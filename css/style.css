@@ -43,6 +43,8 @@ tree2: https://www.pexels.com/photo/silhouette-of-tree-near-body-of-water-during
 
 li{
     list-style: none;
+    padding: auto;
+    margin: auto;
 }
 
 a{
@@ -107,6 +109,11 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: auto;
+}
+
+.links{
+    margin: auto;
 }
 
 .clock {
