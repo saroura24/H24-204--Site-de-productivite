@@ -17,7 +17,7 @@ tree2: https://www.pexels.com/photo/silhouette-of-tree-near-body-of-water-during
 .hero{
     position: relative;
     background-color: rgba(0, 0, 0, 0.425);
-    background-image: url("../images/tree2.jpg");
+    background-image: url("../images/sakura.jpg");
     color: white;
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,10 +30,12 @@ tree2: https://www.pexels.com/photo/silhouette-of-tree-near-body-of-water-during
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #2ed9ff;
+    color: white;
     position: absolute;
     top: 50%;
     left: 50%;
+    margin-top: 80px;
+    
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-weight: bold;
@@ -105,4 +107,71 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.clock {
+    font-family: "Degular Bold", sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 4.5vw;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+}
+
+.pomodoro-options{
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 40%;
+    left: 37%;
+    
+    
+}
+
+/* CSS */
+.button-28 {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 150px;
+  will-change: transform;
+  
+  
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
