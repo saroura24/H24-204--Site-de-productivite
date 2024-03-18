@@ -153,3 +153,24 @@ function stopTimer() {
 document.addEventListener('DOMContentLoaded', () => {
   switchMode('pomodoro');
 });
+
+
+/**
+ * CHANGER FOND D'ÉCRAN
+ */
+
+function background1(){
+  document.querySelector('body').style.background = "url('images/moutain_realist.jpg') center center / cover";
+}
+function background2(){
+  document.querySelector('body').style.background = "url('images/sakura.jpg') center center / cover";
+}
+function background3(){
+  document.querySelector('body').style.background = "url('images/tree.jpg') center center / cover";
+}
+function background4(){
+  document.querySelector('body').style.background = "url('images/tree2.jpg') center center / cover";
+}
+function background5(){
+  document.querySelector('body').style.background = "url('images/ville.jpg') center center / cover";
+}
