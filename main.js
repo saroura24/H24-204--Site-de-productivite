@@ -153,4 +153,3 @@ function stopTimer() {
 document.addEventListener('DOMContentLoaded', () => {
   switchMode('pomodoro');
 });
-
