@@ -40,25 +40,27 @@
                         <li><a href="#heure"><i class="fa-solid fa-stopwatch"></i> Heure</li></a>
                         <li><a href="#profile"><i class="fa-solid fa-user"></i> Profile</li></a>
                     </ul>
-            
-                    <h2 id="fond_ecran">Fond d'écran</h2>
-                    <div class="back">
-                        <div class="back-change" onclick="background1()"><img src="images/mountain_realist.jpg" alt=""></div>
-                        <div class="back-change" onclick="background2()"><img src="images/sakura.jpg" alt=""></div>
-                        <div class="back-change" onclick="background3()"><img src="images/tree.jpg" alt=""></div>
-                        <div class="back-change" onclick="background4()"><img src="images/tree2.jpg" alt=""></div>
-                        <div class="back-change" onclick="background5()"><img src="images/ville.jpg" alt=""></div>
+                    <div class="sectionsParam">
+                        <h2 id="fond_ecran">Fond d'écran
+                            <div class="back">
+                                <div class="back-change" onclick="background('url(\'images/mountain_realist.jpg\') center center / cover rgba(0, 0, 0, 0.425)')"><img src="images/mountain_realist.jpg" alt=""></div>
+                                <div class="back-change" onclick="background('url(\'images/sakura.jpg\') center center / cover rgba(0, 0, 0, 0.425)')"><img src="images/sakura.jpg" alt=""></div>
+                                <div class="back-change" onclick="background('url(\'images/tree.jpg\') center center / cover rgba(0, 0, 0, 0.425)')"><img src="images/tree.jpg" alt=""></div>
+                                <div class="back-change" onclick="background('url(\'images/tree2.jpg\') center center / cover rgba(0, 0, 0, 0.425)')"><img src="images/tree2.jpg" alt=""></div>
+                                <div class="back-change" onclick="background('url(\'images/ville.jpg\') center center / cover rgba(0, 0, 0, 0.425)')"><img src="images/ville.jpg" alt=""></div>
+                            </div>
+                        </h2>
+                        <h2 id="pomodoro">Pomodoro</h2>
+                        <h2 id="heure">Heure</h2>
+                        <h2 id="profile">Profile</h2>
                     </div>
-                    
-                    <h2 id="pomodoro">Pomodoro</h2>
-                    <h2 id="heure">Heure</h2>
-                    <h2 id="profile">Profile</h2>
                 </div>
         
             </div>
         </div>
 
         <script src="main.js"></script>
+        <script src="fond_ecran.js"></script>
         
     </body>
 </html>
