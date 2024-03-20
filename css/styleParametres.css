@@ -69,7 +69,9 @@
 }
 
 .back{
-  position: fixed;
+  position: absolute;
+  top: 40%;
+  left: 25%;
   display: flex;
   justify-content: space-around;
   align-items: center;
