@@ -88,3 +88,19 @@ body{
 .signup label:hover{
   text-decoration: underline;
 }
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  position: relative;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100%;
+  color: #fff;
+  background-color: #009688;
+  border: 2px solid #009688;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
