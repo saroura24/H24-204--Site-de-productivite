@@ -1,0 +1,386 @@
+/* ==========================================================================
+   #POMODORO APP STYLES
+   ========================================================================== */
+
+   html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --pomodoro: hsl(223, 25%, 40%);
+    --shortBreak: hsl(48, 23%, 40%);
+    --longBreak: hsl(105, 16%, 40%);
+  }
+  
+  body {
+    background-color: var(--pomodoro);
+    transition: background-color 1s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    user-select: none;
+  }
+  
+  progress {
+    border-radius: 2px;
+    width: 100%;
+    height: 12px;
+    position: fixed;
+    top: 0;
+  }
+  
+  progress::-webkit-progress-bar {
+   background-color: white;
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #fff;
+  }
+  
+  .timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .time{
+    font-size: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: 80px;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+  }
+  
+  .clock {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 15rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: bold;
+    color: white;
+  }
+  
+  .button-27 {
+    appearance: none;
+    background-color: #000000;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 200px;
+    will-change: transform;
+  }
+  
+  .button-27:disabled {
+    pointer-events: none;
+  }
+  
+  .button-27:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .button-27:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+  
+  button:focus, button:active {
+    outline: none;
+  }
+  
+  .main-button.active {
+    transform: translateY(6px);
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @media screen and (max-width: 550px) {
+    .clock {
+      font-size: 8rem;
+    }
+  }
+  
+  .hero{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.425);
+    background-image: url('../images/lofi.jpg');
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-blend-mode: multiply;
+  }
+  
+  li{
+    list-style: none;
+  }
+  
+  a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .navbar a:hover {
+    opacity: 50%;
+  }
+  
+  header{
+    position: relative;
+    padding: 0 15px;
+  }
+  
+  .navbar{
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar .links{
+    display: block;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    width: 200px;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.189);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  
+  .navbar.open .links{
+    height: 270px;
+  }
+  
+  .navbar .toggle_btn{
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+  }
+  
+  .navbar li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pomodoro-options{
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 40%;
+    left: 37%;
+  }
+  
+  .button-28 {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 40px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 150px;
+    will-change: transform;
+  }
+  
+  .button-28:disabled {
+    pointer-events: none
+  }
+  
+
+ 
+  .button-28:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .button-28:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+  
+  .clicked {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    color: #fff;
+    background-color: #009688;
+    border: 2px solid #009688;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #00796b;
+    border-color: #00796b;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    max-width: 430px;
+    padding: 2rem;
+}
+
+.modal header {
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal input {
+    height: 60px;
+    width: 100%;
+    padding: 0 15px;
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.modal input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal a {
+    font-size: 16px;
+    color: #009579;
+    text-decoration: none;
+}
+
+.modal a:hover {
+    text-decoration: underline;
+}
+
+.modal input.button {
+    color: #fff;
+    background: #009579;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.7rem;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.modal input.button:hover {
+    background: #006653;
+}
+
+.signup {
+    font-size: 17px;
+    text-align: center;
+}
+
+.signup label {
+    color: #009579;
+    cursor: pointer;
+}
+
+.signup label:hover {
+    text-decoration: underline;
+}

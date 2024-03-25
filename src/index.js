@@ -14,18 +14,46 @@ app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
 
+app.get("/", (req,res) =>{
+  res.render("index");
+  });
 
-app.get("/login", (req,res) =>{
+app.get("/accueil", (req,res) =>{
+  res.render("index");
+  });
+
+app.get("/connexion", (req,res) =>{
 res.render("login");
 });
 
-app.get("/signup", (req,res) =>{
+app.get("/inscription", (req,res) =>{
 
 res.render("signup");
 });
 
 
-app.post("/signup", async (req,res)=>{
+
+app.get("/parametres", (req,res) =>{
+  res.render("parametres");
+  });
+
+app.get("/pomodoro", (req,res) =>{
+
+res.render("pomodoro");
+});
+
+app.get("/a-propos", (req,res) =>{
+
+res.render("about");
+});
+
+app.get("/bot", (req,res) =>{
+
+  res.render("bot");
+  });
+
+
+app.post("/inscription", async (req,res)=>{
 const data = {
   name: req.body.username,
   password: req.body.password
@@ -48,7 +76,7 @@ data.password = hashedPassword;
   
 });
 
-app.post("/login", async (req,res)=>{
+app.post("/connexion", async (req,res)=>{
 
     try {
 
