@@ -166,14 +166,16 @@ sakura: https://www.pexels.com/photo/black-withered-tree-surounded-by-body-of-wa
 tree2: https://www.pexels.com/photo/silhouette-of-tree-near-body-of-water-during-golden-hour-36717/*/
 
 .hero{
-  position: relative;
+  
   background-color: rgba(0, 0, 0, 0.425);
   background-image: url('../images/sakura.jpg');
+  background-attachment: scroll;
   color: white;
-  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
   height: 100vh;
   background-blend-mode: multiply;
+  overflow-y: scroll;
 }
 
 
@@ -314,4 +316,35 @@ transform: translateY(0);
 background-color: #1A1A1A;
 box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 transform: translateY(-2px);
+}
+
+.premier-txt{
+  padding-top: 30%;
+}
+
+p{
+  position: relative;
+
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+h2{
+  position: relative;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.content{
+  height: 1000px;
+
+
 }
