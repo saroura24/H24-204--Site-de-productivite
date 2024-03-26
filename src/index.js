@@ -53,52 +53,57 @@ app.get("/bot", (req,res) =>{
   });
 
 
+  app.post("/connexion", async (req,res)=>{
+
+    try {
+
+      const check = await collection.findOne({email: req.body.email});
+     
+      if(!check){
+        res.send("Cet email n'existe pas");
+      }else{
+
+      const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+
+      if(isPasswordMatch){
+          res.redirect("/accueil");
+      }else{
+        res.send("Mauvais mot de passe");
+      }
+    }
+    }catch{
+        res.send("Erreur");
+
+    }
+
+});
+
 app.post("/inscription", async (req,res)=>{
-const data = {
-  name: req.body.username,
+const user = {
+  name: req.body.name,
+  email: req.body.email,
   password: req.body.password
 }
 
-  const existingUser = await collection.findOne({name: data.name})
+  const existingUser = await collection.findOne({email: user.email})
 
   if(existingUser){
     res.send("Ce nom d'utilisateur existe déjà");
   }else{
 
     const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+    const hashedPassword = await bcrypt.hash(user.password, saltRounds);
 
-data.password = hashedPassword;
+user.password = hashedPassword;
 
-    const userdata = await collection.insertMany(data);
+    const userdata = await collection.insertMany(user);
     console.log(userdata);
+    res.redirect("/accueil");
   }
   
 });
 
-app.post("/connexion", async (req,res)=>{
 
-    try {
-
-      const check = await collection.findOne({name: req.body.username});
-      if(!check){
-        res.send("Ce nom d'utilisateur n'existe pas");
-      }
-
-      const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-
-      if(isPasswordMatch){
-          res.render("Accueil");
-      }else{
-        req.send("Mauvais mot de passe");
-      }
-    }catch{
-        res.send("Erreur");
-
-    }
-
-
-});
 
 const port= 5000;
 app.listen(port, ()=>{
