@@ -6,6 +6,8 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+
 body{
   min-height: 100vh;
   width: 100%;
@@ -103,4 +105,5 @@ body{
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  
 }

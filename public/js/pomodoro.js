@@ -6,7 +6,6 @@ $(".button-28").click(function(){
 })
 
 
-
 const timer = {
     pomodoro: 25,
     shortBreak: 5,

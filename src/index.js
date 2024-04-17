@@ -11,14 +11,18 @@ app.use(express.urlencoded({extended: false}));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
+
 // Server-side routes
 app.get("/", (req,res) => {
   res.render("index");
 });
-
+app.get("/accueil", (req,res) => {
+  res.render("index");
+});
 
 app.get("/connexion", (req,res) => {
-  res.render("login");
+  res.render("login", {isPasswordMatch : true});
+
 });
 
 app.get("/inscription", (req,res) => {
@@ -50,8 +54,10 @@ app.post("/connexion", async (req,res) => {
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if(isPasswordMatch){
         res.redirect("/accueil");
+        
       } else {
-        res.send("Mauvais mot de passe");
+        res.render('login', { isPasswordMatch: false });
+        //res.send("Mauvais mot de passe");
       }
     }
   } catch {

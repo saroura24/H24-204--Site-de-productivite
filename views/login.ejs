@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter</title>
     <link rel="stylesheet" href="css/styleApp.css">
+
+ 
 </head>
 <body>
     <div class="container">
         <form action="/connexion" method="post" class="form">
             <header>Se connecter</header>
-          
+            
             <input type="text" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
             
@@ -18,9 +20,26 @@
         </form>
         <div class="signup">
             <span>Pas de compte? <a href="/inscription">Créez-en un!</a></span>
-
-            
         </div>
     </div>
+
+    <p>Is password match dd: <%= isPasswordMatch %></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <%if(!isPasswordMatch) {%>
+       <script>
+     
+        
+        $("#email").before("Votre mot de passe est erroné. Veuillez réessayez.");
+        $(".container").height(400);
+        $("#email").css("border-color", "red");
+        $("#password").css("border-color", "red");
+        //essayer de coder le text qui va rentrer dans la boite pour dire mot de passe erroné
+       </script>
+       
+        <%  }%>
+
+   
+
 </body>
 </html>
