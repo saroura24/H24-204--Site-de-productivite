@@ -97,6 +97,8 @@ function startTimer() {
     total = timer.remainingTime.total;
     if (total <= 0) {
       clearInterval(interval);
+      var audio = new Audio('../audio/endPomodoroSound.wav');
+      audio.play();
     }
   }, 1000);
 }
