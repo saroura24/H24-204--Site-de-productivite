@@ -29,7 +29,7 @@
                             <a href="bot"><i class="fa-solid fa-robot"></i> Bot</a>
                         </li>
                         <li>
-                            <a href="about"><i class="fa-solid fa-circle-info"></i> À propos de nous</a>
+                            <a href="a-propos"><i class="fa-solid fa-circle-info"></i> À propos de nous</a>
                         </li>
 
                         <li>
@@ -55,47 +55,13 @@
         </div>
     </div>
 
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <header>Login</header>
-            <form action="#">
-                <input type="text" placeholder="Enter your email">
-                <input type="password" placeholder="Enter your password">
-                <a href="#">Mot de passe oubli/?</a>
-                <input type="button" class="button" value="LOGIN">
-                <div class="signup">
-                    <span class="signup">Pas de compte?
-                        <label id="openSignupModal" for="check">S'inscrire</label>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </div>
-
    
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <header>Sign up</header>
-            <form action="#">
-                <input type="text" placeholder="Full Name">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Create a password">
-                <input type="password" placeholder="Confirm your password">
-                <input type="button" class="button" value="Signup">
-                <div class="signup">
-                    <span class="signup">Already have an account?
-                        <label id="openLoginModal" for="check">Login</label>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/accueil.js"></script>
     <script src="js/fond_ecran.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/registration.js"></script>
+    
     
     <%if(isPasswordMatch) {%>
         <script>

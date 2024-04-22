@@ -139,15 +139,7 @@
     }
   }
   
-  .hero{
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.425);
-    color: white;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    background-blend-mode: multiply;
-  }
+  
   
   li{
     list-style: none;
@@ -382,4 +374,77 @@
 
 .signup label:hover {
     text-decoration: underline;
+}
+
+.premier-txt{
+  padding-top: 20%;
+  position: relative;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 2rem;
+}
+
+.content-about{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+
+.suite-txt{
+  position: relative;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+h2{
+  padding-bottom: 50px;
+}
+
+@media screen and (max-width: 1223px) {
+  h2 {
+    padding-bottom: 100px;
+  }
+}
+
+
+@media screen and (max-width: 846px) {
+  h2 {
+    padding-bottom: 150px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  h2 {
+    padding-bottom: 225px;
+  }
+}
+
+h3{
+  position: relative;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+  
+}
+
+.hero{
+  
+  background-color: rgba(0, 0, 0, 0.425);
+  background-image: url('../images/sakura.jpg');
+  background-attachment: scroll;
+  color: white;
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+  background-blend-mode: multiply;
+  overflow-y: scroll;
 }
