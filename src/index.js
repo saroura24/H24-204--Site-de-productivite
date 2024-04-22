@@ -94,6 +94,22 @@ app.post("/inscription", async (req,res) => {
   }
 });
 
+app.post("/mot-de-passe", async (req,res)=>{
+
+const motDePasse = {
+  currentPassword : req.body.currentPassword,
+  newPassword : req.body.newPassword,
+  confirmPassword : req.body.newPassword
+}
+
+const existingPassword = await collection.findOne({password: motDePasse.currentPassword})
+
+if(existingPassword===false){
+console.log("meme mdp");
+}
+
+});
+
 // Start the server
 const port = 5000;
 app.listen(port, () => {
