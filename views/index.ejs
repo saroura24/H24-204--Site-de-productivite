@@ -33,7 +33,7 @@
                         </li>
 
                         <li>
-                          <a href="connexion"><i class="fa-solid fa-user"></i> Se connecter</a>
+                          <a class="connecter"  href="connexion"><i class="fa-solid fa-user"></i> <span>Se connecter</span></a>
                       </li>
 
                         <li>
@@ -61,11 +61,11 @@
             <form action="#">
                 <input type="text" placeholder="Enter your email">
                 <input type="password" placeholder="Enter your password">
-                <a href="#">Forgot password?</a>
+                <a href="#">Mot de passe oubli/?</a>
                 <input type="button" class="button" value="LOGIN">
                 <div class="signup">
-                    <span class="signup">Don't have an account?
-                        <label id="openSignupModal" for="check">Sign up</label>
+                    <span class="signup">Pas de compte?
+                        <label id="openSignupModal" for="check">S'inscrire</label>
                     </span>
                 </div>
             </form>
@@ -96,5 +96,17 @@
     <script src="js/fond_ecran.js"></script>
     <script src="js/main.js"></script>
     <script src="js/registration.js"></script>
+    
+    <%if(isPasswordMatch) {%>
+        <script>
+      
+      $(document).ready(function() {
+        $(".connecter span").text("Mon compte");
+        $('.connecter').attr('href', 'mon-compte');
+         
+ });
+        </script>
+        
+         <%  } %>
 </body>
 </html>

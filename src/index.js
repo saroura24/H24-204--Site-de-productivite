@@ -17,12 +17,19 @@ app.get("/", (req,res) => {
   res.render("index");
 });
 app.get("/accueil", (req,res) => {
-  res.render("index");
+  res.render("index", {isPasswordMatch : false});
 });
 
 app.get("/connexion", (req,res) => {
-  res.render("login", {isPasswordMatch : true});
+  res.render("login", {isPasswordMatch : true, check: true});
+});
 
+app.get("/mon-compte", (req,res) => {
+  res.render("myAccount2");
+});
+
+app.get("/mot-de-passe", (req,res) => {
+  res.render("password");
 });
 
 app.get("/inscription", (req,res) => {
@@ -49,14 +56,15 @@ app.post("/connexion", async (req,res) => {
   try {
     const check = await collection.findOne({email: req.body.email});
     if(!check){
-      res.send("Cet email n'existe pas");
+      res.render('login', { check: false, isPasswordMatch: null });
+      
     } else {
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if(isPasswordMatch){
-        res.redirect("/accueil");
+        res.render('index', {isPasswordMatch: true})
         
       } else {
-        res.render('login', { isPasswordMatch: false });
+        res.render('login', { isPasswordMatch: false, check: true });
         //res.send("Mauvais mot de passe");
       }
     }

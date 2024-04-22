@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter</title>
     <link rel="stylesheet" href="css/styleApp.css">
+   
 
  
 </head>
@@ -13,8 +14,8 @@
         <form action="/connexion" method="post" class="form">
             <header>Se connecter</header>
             
-            <input type="text" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <input type="text" id="email" name="email" placeholder="E-mail" required autocomplete="off">
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
             
             <button type="submit" class="button">Se connecter</button>
         </form>
@@ -23,23 +24,66 @@
         </div>
     </div>
 
-    <p>Is password match dd: <%= isPasswordMatch %></p>
+ 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+    <% if(check===false){%>
+        <script>
+ 
+            $(document).ready(function() {
+                $(".container").height(430);
+               $("#email").css("margin-top", "10px");
+               $("#email").before("Cet e-mail n'existe pas. Veuillez réessayez.");
+               $("#email").css("border-color", "red");
+               $("#password").css("border-color", "red");
+       });
+              </script>
+
+        <%  }else if(isPasswordMatch===false){%>
+            <script>
+     
+                $(document).ready(function() {
+                   $(".container").height(460);
+                   $("#email").css("margin-top", "10px");
+                   $("#email").before("Votre mot de passe est erroné. Veuillez réessayez.");
+                   $("#email").css("border-color", "red");
+                   $("#password").css("border-color", "red");
+           });
+                  </script>
+
+            <%  }%>
+
+
+
+
+
+
+<!--
     <%if(!isPasswordMatch) {%>
        <script>
      
-        
+     $(document).ready(function() {
+        $(".container").height(460);
+        $("#email").css("margin-top", "10px");
         $("#email").before("Votre mot de passe est erroné. Veuillez réessayez.");
-        $(".container").height(400);
         $("#email").css("border-color", "red");
         $("#password").css("border-color", "red");
-        //essayer de coder le text qui va rentrer dans la boite pour dire mot de passe erroné
+});
        </script>
        
-        <%  }%>
-
+        <%  } else if(!check){%>
+            <script>
+     
+                $(document).ready(function() {
+                   $(".container").height(460);
+                   $("#email").css("margin-top", "10px");
+                   $("#email").before("Cet e-mail n'existe pas. Veuillez réessayez.");
+                   $("#email").css("border-color", "red");
+                   $("#password").css("border-color", "red");
+           });
+                  </script>
    
-
+            <%  }%>
+                -->
 </body>
 </html>
