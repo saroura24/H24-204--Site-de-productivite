@@ -90,7 +90,7 @@ app.post("/inscription", async (req,res) => {
     user.password = hashedPassword;
     const userdata = await collection.insertMany(user);
     console.log(userdata);
-    res.redirect("/accueil");
+    res.render("index", {isPasswordMatch : true});
   }
 });
 

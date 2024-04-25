@@ -4,25 +4,25 @@
 
    html {
     box-sizing: border-box;
+    
+    
   }
-  
+
+
   *, *::before, *::after {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
   }
   
-  :root {
-    --pomodoro: hsl(223, 25%, 40%);
-    --shortBreak: hsl(48, 23%, 40%);
-    --longBreak: hsl(105, 16%, 40%);
-  }
+
   
   body {
     background-color: var(--pomodoro);
-    transition: background-color 1s ease;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     user-select: none;
+   
+   
   }
   
   progress {
@@ -51,7 +51,7 @@
   }
   
   .time{
-    font-size: 10rem;
+    font-size: 15rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,6 +112,12 @@
   .button-27:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
+  }
+
+  .play-playlist:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+    cursor: pointer;
   }
   
   .button-27:active {
@@ -439,7 +445,7 @@ h3{
 .hero{
   
   background-color: rgba(0, 0, 0, 0.425);
-  background-image: url('../images/sakura.jpg');
+  background-image: url('../images/cozy.jpg');
   background-attachment: scroll;
   color: white;
   background-position: center center;
@@ -447,4 +453,39 @@ h3{
   height: 100vh;
   background-blend-mode: multiply;
   overflow-y: scroll;
+}
+
+.chose-playlist{
+  background-color: #000000;
+  border-radius: 25px;
+  width: 330px;
+  height: 30px;
+  position: absolute;
+  top: 75%;
+  left: 30px;
+  border-color: white;
+  color: white;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-weight: bold;
+
+}
+
+.play-playlist{
+
+  background-color: white;
+  border-radius: 25px;
+  width: 60px;
+  height: 30px;
+  position: absolute;
+  top: 75%;
+  left: 360px;
+  border-color: white;
+  
+  color: black;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-weight: bold;
+  margin-left: 10px;
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  
 }

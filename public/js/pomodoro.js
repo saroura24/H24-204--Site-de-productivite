@@ -114,3 +114,44 @@ function stopTimer() {
 document.addEventListener('DOMContentLoaded', () => {
   switchMode('pomodoro');
 });
+
+
+  
+$(".play-playlist").click(function(){
+
+  let spotifyLink = "";
+    
+  if($(".chose-playlist").val()!=""){
+  
+  var spotifyString = $(".chose-playlist").val(); 
+  
+  
+  let slashCounter = 0;
+  var embedAdded=false;
+  
+  for (let i = 0; i < spotifyString.length; i++) {
+      if (spotifyString.charAt(i) === '?') {
+          break;
+      }
+  
+      if (spotifyString.charAt(i) === '/') {
+          slashCounter += 1;
+      }
+  
+      if (slashCounter === 3 && embedAdded==false) {
+          spotifyLink += "/embed";
+           embedAdded=true;
+      }
+  
+      spotifyLink += spotifyString.charAt(i);
+  }
+  
+  }
+  
+  if(spotifyLink!=""){
+  $("#iframe").attr("src", spotifyLink);
+  }
+  
+  $(".chose-playlist").val("");
+  
+  })
