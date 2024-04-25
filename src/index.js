@@ -2,8 +2,22 @@ const express = require('express');
 const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
-
 const app = express();
+const dotenv = require('dotenv')
+
+dotenv.config();
+
+const { URI, PORT, SECRET_ACCESS_TOKEN } = process.env;
+
+module.exports = { URI, PORT, SECRET_ACCESS_TOKEN };
+
+
+
+//Intégrer système de session
+
+
+/*https://dev.to/m_josh/build-a-jwt-login-
+and-logout-system-using-expressjs-nodejs-hd2*/
 
 // Middleware
 app.use(express.json());
@@ -62,7 +76,20 @@ app.post("/connexion", async (req,res) => {
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if(isPasswordMatch){
         res.render('index', {isPasswordMatch: true})
-        
+
+        let options = {
+          maxAge: 1440 * 60 * 1000, // would expire in 24 hours
+          httpOnly: true, // The cookie is only accessible by the web server
+          secure: true,
+          sameSite: "None",
+      };
+      const token = user.generateAccessJWT(); // generate session token for user
+      res.cookie("SessionID", token, options);  //set the token to response header, so that the client sends it back on each subsequent request
+      
+      //Trouver comment faire fonctionner la session de l'utilisateur
+
+
+
       } else {
         res.render('login', { isPasswordMatch: false, check: true });
         //res.send("Mauvais mot de passe");

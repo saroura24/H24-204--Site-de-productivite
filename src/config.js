@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 const connect= mongoose.connect("mongodb+srv://yannyvan2005:dervalvh3@cluster0.xfb4i2x.mongodb.net/Studialy");
+const jwt = require("jsonwebtoken")
+const SECRET_ACCESS_TOKEN = require('../src/index')
+
+
+
+
 
 connect.then(()=>{
 
@@ -12,6 +18,8 @@ console.log("Database couldnt be connected");
 
 
 });
+
+
 
 
 const LoginSchema = new mongoose.Schema({
@@ -28,7 +36,18 @@ const LoginSchema = new mongoose.Schema({
     required: true
 
   }
+  
 });
+
+
+LoginSchema.methods.generateAccessJWT = function () {
+  let payload = {
+    id: this._id,
+  };
+  return jwt.sign(payload, SECRET_ACCESS_TOKEN, {
+    expiresIn: '24h',
+  });
+};
 
 
 const InfoSchema = new mongoose.Schema({
@@ -55,4 +74,7 @@ const InfoSchema = new mongoose.Schema({
 const collection = new mongoose.model("users", LoginSchema);
 
 module.exports = collection;
+
+
+
 
