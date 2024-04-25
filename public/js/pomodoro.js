@@ -16,7 +16,7 @@ const timer = {
   const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click', () => {
   const { action } = mainButton.dataset;
-  if (action === 'Start') {
+  if (action === 'Commencer') {
     startTimer();
   } else {
     stopTimer();
@@ -86,8 +86,8 @@ function startTimer() {
   const endTime = Date.parse(new Date()) + total * 1000;
 
 
-  mainButton.dataset.action = 'Stop';
-  mainButton.textContent = 'Stop';
+  mainButton.dataset.action = 'Arrêter';
+  mainButton.textContent = 'Arrêter';
   mainButton.classList.add('active');
 
   interval = setInterval(function() {
@@ -106,8 +106,8 @@ function startTimer() {
 function stopTimer() {
   clearInterval(interval);
 
-  mainButton.dataset.action = 'Start';
-  mainButton.textContent = 'Start';
+  mainButton.dataset.action = 'Commencer';
+  mainButton.textContent = 'Commencer';
   mainButton.classList.remove('active');
 }
 
