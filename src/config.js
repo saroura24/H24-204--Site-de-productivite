@@ -30,6 +30,28 @@ const LoginSchema = new mongoose.Schema({
   }
 });
 
+
+const InfoSchema = new mongoose.Schema({
+  firstName: {
+      type: String,
+      
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  gender:{
+    type: String,
+    required: true
+
+  },
+  birth:{
+    type: String,
+    required: true
+
+  }
+});
+
 const collection = new mongoose.model("users", LoginSchema);
 
 module.exports = collection;
