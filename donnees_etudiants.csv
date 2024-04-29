@@ -1,0 +1,47 @@
+Genre,Age,Programme_detude,Suggestion_tache,Performance,Duree,Matiere_etudiee,Moment_detude
+Masculin,23,Informatique,Revoir les concepts de programmation,85%,2,Algorithmique,Matin
+Feminin,20,Psychologie,Lire un article de recherche,75%,3,Psychopathologie,Midi
+Masculin,25,Ingénierie Mécanique,Faire des exercices pratiques,70%,4,Thermodynamique,Après-midi
+Masculin,22,Finance,Revoir les formules de mathématiques financières,90%,2,Analyse financière,Soir
+Feminin,24,Droit,Prendre des notes sur le chapitre assigné,80%,3,Droit des contrats,Matin
+Masculin,21,Médecine,Préparer des fiches de révision,95%,4,Anatomie,Midi
+Masculin,26,Sciences Politiques,Lire un livre recommandé par le professeur,65%,2,Théorie politique,Après-midi
+Feminin,23,Architecture,Faire des croquis architecturaux,85%,3,Design urbain,Soir
+Masculin,22,Informatique,Pratiquer des problèmes de logique,80%,2,Intelligence artificielle,Matin
+Masculin,20,Ingénierie Civile,Réviser les principes de la mécanique des sols,70%,4,Géotechnique,Midi
+Feminin,21,Éducation,Préparer une présentation orale,75%,3,Pédagogie,Après-midi
+Masculin,24,Chimie,Effectuer des expériences en laboratoire,85%,4,Chimie organique,Soir
+Feminin,22,Langues Étrangères,Regarder un film dans la langue étudiée,80%,2,Traduction,Matin
+Masculin,23,Physique,Pratiquer des problèmes de physique quantique,90%,3,Physique des particules,Midi
+Feminin,25,Gestion,Élaborer un plan de gestion de projet,75%,2,Gestion de la qualité,Après-midi
+Masculin,22,Informatique,Travailler sur un projet de développement logiciel,85%,4,Génie logiciel,Soir
+Masculin,26,Économie,Analyser des données économiques,80%,3,Macroéconomie,Matin
+Feminin,24,Sciences Sociales,Lire des articles de sociologie,70%,2,Anthropologie,Midi
+Masculin,21,Ingénierie Électrique,Concevoir un circuit électronique,85%,4,Électromagnétisme,Après-midi
+Masculin,23,Médecine,Étudier pour un examen pratique,90%,3,Pharmacologie,Soir
+Feminin,20,Psychologie,Analyser des cas cliniques,80%,2,Psychologie cognitive,Matin
+Masculin,25,Finance,Lire des rapports financiers,85%,4,Gestion financière,Midi
+Feminin,22,Droit,Préparer un exposé sur un cas juridique,75%,3,Droit constitutionnel,Après-midi
+Masculin,24,Architecture,Dessiner des plans architecturaux,80%,2,Design d'intérieur,Soir
+Masculin,26,Informatique,Résoudre des problèmes d'algorithmique avancée,90%,3,Théorie de la complexité,Matin
+Feminin,23,Ingénierie Mécanique,Réviser les principes de la mécanique des fluides,70%,2,Mécanique des fluides,Midi
+Masculin,22,Éducation,Préparer des supports de cours,75%,4,Pédagogie,Après-midi
+Masculin,20,Chimie,Pratiquer des équations chimiques,85%,3,Chimie inorganique,Soir
+Feminin,21,Informatique,Travailler sur un projet de développement web,80%,2,Développement web,Matin
+Masculin,24,Gestion,Analyser des études de marché,85%,4,Marketing,Midi
+Masculin,26,Sciences Politiques,Lire des textes politiques classiques,70%,3,Histoire politique,Après-midi
+Feminin,25,Langues Étrangères,Écouter des enregistrements audio dans la langue étudiée,75%,2,Phonétique,Soir
+Masculin,23,Physique,Étudier pour un examen de physique théorique,90%,3,Théorie quantique des champs,Matin
+Feminin,22,Économie,Analyser des modèles économétriques,80%,3,Économétrie,Midi
+Masculin,21,Ingénierie Civile,Travailler sur un projet de conception structurale,85%,4,Conception structurale,Après-midi
+Masculin,24,Médecine,Lire des études de cas cliniques,95%,2,Chirurgie,Soir
+Feminin,26,Psychologie,Lire des articles sur la psychologie sociale,70%,3,Psychologie sociale,Matin
+Masculin,25,Architecture,Concevoir des maquettes architecturales,85%,4,Design architectural,Midi
+Masculin,23,Informatique,Pratiquer des problèmes de programmation dynamique,90%,3,Algorithmique,Soir
+Feminin,20,Ingénierie Électrique,Réviser les principes de l'électrotechnique,75%,2,Électrotechnique,Matin
+Masculin,22,Sciences Sociales,Lire des ouvrages de théorie politique,80%,3,Théorie politique,Après-midi
+Masculin,21,Finance,Analyser des données financières avec des logiciels statistiques,85%,4,Analyse financière,Soir
+Feminin,24,Éducation,Préparer des activités pédagogiques,70%,3,Pédagogie,Matin
+Masculin,26,Chimie,Effectuer des expériences de synthèse organique,95%,2,Chimie organique,Midi
+Masculin,23,Physique,Étudier pour un examen de physique nucléaire,90%,3,Physique nucléaire,Après-midi
+F
