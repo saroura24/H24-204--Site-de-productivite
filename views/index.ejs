@@ -47,8 +47,22 @@
                     </div>
                 </div>
             </header>
-           
+
+<div class="salutation">
+
+
+    <% if (typeof name !== 'undefined') { %>
+        <span>Bonjour, <%= name %>.</span>
+    <% } else { %>
+        <span>Bonjour, invité.</span>
+    <% } %>
+
+
+</div>
+            
+            
             <div class="time" id="live-time">
+             
                 <span id="hrs">00</span>
                 <span>:</span>
                 <span id="min">00</span>
@@ -59,8 +73,6 @@
     </div>
 
    
-    
-   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/accueil.js"></script>
@@ -69,14 +81,7 @@
     
     
     <%if(isPasswordMatch) {%>
-        <script>
-      
-      $(document).ready(function() {
-        $(".connecter span").text("Mon compte");
-        $('.connecter').attr('href', 'mon-compte');
-         
- });
-        </script>
+        <script src="js/connexion.js"></script>
         
          <%  } %>
 </body>

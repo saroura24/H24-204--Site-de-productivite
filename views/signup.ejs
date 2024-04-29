@@ -21,5 +21,20 @@
             <span>Avez-vous un compte? <a href="/connexion">Connectez-vous!</a></span>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <% if(existingUser===true){%>
+
+        
+        <script>
+ 
+            $(document).ready(function() {
+                $(".container").height(590);
+               $("#full-name").css("margin-top", "10px");
+               $("#full-name").before("Cet e-mail est déja utilisé.");
+       });
+              </script>
+              <% console.log(existingUser)%>  
+
+<%  }  %>
 </body>
 </html>

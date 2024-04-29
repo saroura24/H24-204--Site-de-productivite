@@ -26,8 +26,8 @@
                             </li>
     
                             <li>
-                              <a href="connexion"><i class="fa-solid fa-user"></i> Se connecter</a>
-                          </li>
+                                <a class="connecter"  href="connexion"><i class="fa-solid fa-user"></i> <span>Se connecter</span></a>
+                            </li>
     
                             <li>
                                 <a href="parametres"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</a>
@@ -73,6 +73,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>   
         <script src="js/main.js"></script>
         <script src="js/fond_ecran.js"></script>
+
+
+        <%if(isPasswordMatch) {%>
+            <script src="js/connexion.js"></script>
+            
+             <%  } %>
         
     </body>
 </html>

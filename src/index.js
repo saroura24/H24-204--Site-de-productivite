@@ -3,19 +3,8 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 const app = express();
-const dotenv = require('dotenv')
-
-dotenv.config();
-
-const { URI, PORT, SECRET_ACCESS_TOKEN } = process.env;
-
-module.exports = { URI, PORT, SECRET_ACCESS_TOKEN };
-
-
 
 //Intégrer système de session
-
-
 /*https://dev.to/m_josh/build-a-jwt-login-
 and-logout-system-using-expressjs-nodejs-hd2*/
 
@@ -25,13 +14,28 @@ app.use(express.urlencoded({extended: false}));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
+const session = require('express-session');
 
+require('dotenv').config();
+
+app.use(session({
+  secret: process.env.SESSION_SECRET, // Replace 'your_secret_key' with a real key for production
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if you're using HTTPS
+}));
 // Server-side routes
 app.get("/", (req,res) => {
   res.render("index");
 });
 app.get("/accueil", (req,res) => {
+if(req.session.isAuthenticated && req.session.user){
+  
+  res.render("index", {isPasswordMatch : true, name: req.session.user.name});
+}else{
   res.render("index", {isPasswordMatch : false});
+}
+  
 });
 
 app.get("/connexion", (req,res) => {
@@ -47,24 +51,49 @@ app.get("/mot-de-passe", (req,res) => {
 });
 
 app.get("/inscription", (req,res) => {
-  res.render("signup");
+
+  res.render("signup", {existingUser: false});
 });
 
-app.get("/parametres", (req,res) => {
-  res.render("parametres");
+app.get("/parametres", (req, res) => {
+ 
+
+  if(req.session.isAuthenticated){
+    
+    res.render("parametres", {isPasswordMatch : true});
+  }else{
+    
+    res.render("parametres", {isPasswordMatch : false});
+  }
+ 
 });
 
 app.get("/pomodoro", (req,res) => {
-  res.render("pomodoro");
+  if(req.session.isAuthenticated){
+    res.render("pomodoro", {isPasswordMatch : true});
+  }else{
+    res.render("pomodoro", {isPasswordMatch : false});
+  }
 });
 
 app.get("/a-propos", (req,res) => {
-  res.render("about");
+  if(req.session.isAuthenticated){
+    res.render("about", {isPasswordMatch : true});
+  }else{
+    res.render("about", {isPasswordMatch : false});
+  }
 });
 
 app.get("/bot", (req,res) => {
   res.render("bot");
 });
+
+app.get("/deconnexion", (req,res) => {
+  req.session.isAuthenticated=false;
+  res.redirect('/accueil');
+});
+
+
 
 app.post("/connexion", async (req,res) => {
   try {
@@ -75,24 +104,18 @@ app.post("/connexion", async (req,res) => {
     } else {
       const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
       if(isPasswordMatch){
-        res.render('index', {isPasswordMatch: true})
-
-        let options = {
-          maxAge: 1440 * 60 * 1000, // would expire in 24 hours
-          httpOnly: true, // The cookie is only accessible by the web server
-          secure: true,
-          sameSite: "None",
+        
+        req.session.user = {
+          name: check.name,
+          email: check.email
       };
-      const token = user.generateAccessJWT(); // generate session token for user
-      res.cookie("SessionID", token, options);  //set the token to response header, so that the client sends it back on each subsequent request
-      
-      //Trouver comment faire fonctionner la session de l'utilisateur
 
-
-
+        req.session.isAuthenticated = true;
+        res.redirect('/accueil'); 
+    
       } else {
         res.render('login', { isPasswordMatch: false, check: true });
-        //res.send("Mauvais mot de passe");
+       
       }
     }
   } catch {
@@ -110,14 +133,20 @@ app.post("/inscription", async (req,res) => {
   const existingUser = await collection.findOne({email: user.email})
 
   if(existingUser){
-    res.send("Ce nom d'utilisateur existe déjà");
+    res.render("signup", {existingUser: true});
+    
   } else {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
     const userdata = await collection.insertMany(user);
     console.log(userdata);
-    res.render("index", {isPasswordMatch : true});
+    req.session.user = {
+      name: user.name,
+      email: user.email
+  };
+    res.render("index", {isPasswordMatch : true, name: req.session.user.name});
+   
   }
 });
 

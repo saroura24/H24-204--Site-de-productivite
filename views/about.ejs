@@ -32,8 +32,8 @@
                             </li>
     
                             <li>
-                              <a class="connecter"  href="connexion"><i class="fa-solid fa-user"></i> <span>Se connecter</span></a>
-                          </li>
+                                <a class="connecter"  href="connexion"><i class="fa-solid fa-user"></i> <span>Se connecter</span></a>
+                            </li>
     
                             <li>
                                 <a href="parametres"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</a>
@@ -49,7 +49,7 @@
             </header>
                 <div class="content-about">
                     <p class="premier-txt">Studialy est votre compagnon dans vos études. La mission
-                        de Sudialy est de fournir plusieurs outils facilitant les études.</p>
+                        de Studialy est de fournir plusieurs outils facilitant les études.</p>
                     <div class="div-txt">
                         <h2 class="suite-txt">Notre équipe</h2>
                         <p class="suite-txt">Nous sommes une équipe d'étudiants qui ont choisi Studialy pour un projet scolaire afin 
@@ -70,6 +70,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/fond_ecran.js"></script>
+        <%if(isPasswordMatch) {%>
+            <script src="js/connexion.js"></script>
+            
+             <%  } %>
         
     </body>
 </html>
