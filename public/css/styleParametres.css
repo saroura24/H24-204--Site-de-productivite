@@ -19,8 +19,7 @@
   margin-top: 80px;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  font-weight: bold;
-    
+  font-weight: bold;    
 }
 
 .paramContainer li{
@@ -71,7 +70,6 @@
 .back{
   position: absolute;
   top: 40%;
-  left: 25%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -93,4 +91,18 @@
   height: 100%;
   object-fit: cover;
 }
+
+.paramContainer .sectionsParam{
+  position: absolute;
+  top: 60%;
+  left: 25%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#pomodoro{
+  position: absolute;
+  top: 300px;
+}
+
 
