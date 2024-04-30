@@ -9,7 +9,7 @@ from sklearn.naive_bayes import MultinomialNB
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
-import tensorflow as tf
+#import tensorflow as tf
 import nltk
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix

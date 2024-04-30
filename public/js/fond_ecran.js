@@ -1,25 +1,27 @@
-
-
-
-
-// Cache the '.hero' element to avoid querying the DOM repeatedly
-const heroElement = document.querySelector('.hero');
-
-function background(img) {
-    // Set background directly without querying the DOM again
-    heroElement.style.background = img;
-    // Store background image in localStorage
-    localStorage.setItem('backgroundImage', img);
-}
-
-function getBackground() {
-    // Retrieve background image directly from localStorage
-    const img = localStorage.getItem('backgroundImage');
-    if (img) {
-        // Set background directly without querying the DOM again
-        heroElement.style.background = img;
+$(document).ready(function() {
+   
+    function setBackground(img) {
+        $(".hero").css({"background-image": "url(" + img + ")"});
+       
+        localStorage.setItem('backgroundImage', img);
     }
-}
 
-// Use addEventListener instead of directly assigning to window.onload
-window.addEventListener('load', getBackground);
+   
+    function getBackground() {
+      
+        const img = localStorage.getItem('backgroundImage');
+        if (img) {
+            
+            setBackground(img);
+        }
+    }
+
+   
+    $(".back-change").click(function(){
+        var imgSrc = $(this).find('img').attr('src');
+        setBackground(imgSrc);
+    });
+
+    
+    getBackground();
+});

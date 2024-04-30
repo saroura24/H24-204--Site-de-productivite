@@ -444,15 +444,14 @@ h3{
 
 .hero{
   
-  background-color: rgba(0, 0, 0, 0.425);
-  background-image: url('../images/cozy.jpg');
+  background-color: rgba(0, 0, 0, 0.450);
   background-attachment: scroll;
   color: white;
   background-position: center center;
   background-size: cover;
   height: 100vh;
   background-blend-mode: multiply;
-  overflow-y: scroll;
+  
 }
 
 .chose-playlist{
