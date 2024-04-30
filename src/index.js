@@ -145,6 +145,7 @@ app.post("/inscription", async (req,res) => {
       name: user.name,
       email: user.email
   };
+  req.session.isAuthenticated = true;
     res.render("index", {isPasswordMatch : true, name: req.session.user.name});
    
   }
