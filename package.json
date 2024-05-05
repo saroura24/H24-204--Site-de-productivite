@@ -10,7 +10,8 @@
     "express-sessions": "^1.0.6",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.2.2"
+    "mongoose": "^8.2.2",
+    "npx": "^10.2.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
