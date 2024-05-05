@@ -451,6 +451,7 @@ h3{
   background-size: cover;
   height: 100vh;
   background-blend-mode: multiply;
+  overflow-y: scroll;
   
 }
 
