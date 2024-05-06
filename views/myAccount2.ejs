@@ -1,88 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon compte</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/accountStyle.css">
-  
-</head>
-
-<body>
-  <div class="container-xl px-4 mt-4">
-    <!-- Account page navigation-->
-    <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profil</a>
-
-        <a class="nav-link" href="mot-de-passe" target="__blank">Mot de passe</a>
-
-        <a href="accueil">
-            <button class="btn btn-primary" type="button" style="position: absolute; left: 76%;">Revenir à l'accueil</button>
-        </a>
-      
-    </nav>
-    <hr class="mt-0 mb-4">
-    <div class="row">
-        <div class="col-xl-4">
-            <!-- Profile picture card-->
-            <div class="card mb-4 mb-xl-0">
-                <div class="card-header">Photo de profil</div>
-                <div class="card-body text-center">
-                    <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile Picture">
-                    <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG or PNG, maximum 5 MB</div>
-                    <!-- Profile picture upload button-->
-                    <label class="btn btn-primary btn-sm">
-                        Téléverser une image
-                        <input type="file" class="account-settings-fileinput" accept="image/*" style="display: none;" onchange="displayImage(this)">
-                    </label> &nbsp;
-                    <!-- Image display after upload -->
-                    <!--<img id="uploadedImage" class="image-display" style="display: none;">  initially hidden -->
-                </div>
-            </div>
-        </div>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mon compte</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/accountStyle.css">
         
-        <div class="col-xl-8">
-            <!-- Account details card-->
-            <div class="card mb-4">
-                <div class="card-header">Informations du compte</div>
-                <div class="card-body">
-                    <form>
-                      
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
+    </head>
+    <div class="hero" style="background-image: url(`images/cozy.jpg`);">
+    <body>
+        
+        <div class="container-xl px-4 mt-4">
+            <!-- Account page navigation-->
+        
+            <div class="logo" style="position: absolute; top: 1rem; left: 1rem;"><a href="accueil">Studialy</a></div>
+     
+            <div class="row">
+                
+                <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Informations du compte</div>
+                    <div class="card-body">
+                        <form>
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">Prénom</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Entrez votre prénom" ">
+                                <input class="form-control" id="inputFirstName" type="text" placeholder="Entrez votre prénom" >
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">Nom</label>
                                 <input class="form-control" id="inputLastName" type="text" placeholder="Entrez votre nom">
                             </div>
-                        </div>
-                      
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
+                            </div>
+                            <!-- Form Group (email address)-->
+                            <div class="mb-3">
                             <label class="small mb-1" for="inputEmailAddress">E-mail</label>
                             <input class="form-control" id="inputEmailAddress" type="email" placeholder="Entrez votre adresse e-mail">
-                        </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                          
+                            </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputGender">Genre</label>
-                                
-
-                               <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;">
-                                
-                                <option value="masculin">Masculin</option>
-                                <option value="feminin">Féminin</option>
-                                <option value="undetermined">Préfère ne pas spécifier</option>
+                                <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;">
+                                    <option value="masculin">Masculin</option>
+                                    <option value="feminin">Féminin</option>
+                                    <option value="undetermined">Préfère ne pas spécifier</option>
                                 </select>
                             </div>
                             <!-- Form Group (birthday)-->
@@ -90,97 +58,78 @@
                                 <label class="small mb-1" for="inputBirthday">Âge</label>
                                 <input class="form-control" data-mdb-inline="true" id="inputBirthday" type="text" name="birthday" placeholder="Entrez votre âge" >
                             </div>
-                        </div>
-
-
-                        <div class="row gx-3 mb-3">
-
+                            </div>
+                            <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" >Temps d'étude moyen</label>
-                                
-    
-                               <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
-                                
-                                <option value="petitSession">0-2h</option>
-                                <option value="moyenSession">2-4h</option>
-                                <option value="grandSession">4-6h</option>
+                                <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
+                                    <option value="petitSession">0-2h</option>
+                                    <option value="moyenSession">2-4h</option>
+                                    <option value="grandSession">4-6h</option>
                                 </select>
                             </div>
-
                             <div class="col-md-6">
                                 <label class="small mb-1" >Moment d'étude</label>
-                                
-    
-                               <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
-                                
-                                <option value="avant-midi">Avant-midi</option>
-                                <option value="matin">Matinée</option>
-                                <option value="midi">Après-midi</option>
-                                <option value="soir">Soirée</option>
+                                <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
+                                    <option value="avant-midi">Avant-midi</option>
+                                    <option value="matin">Matinée</option>
+                                    <option value="midi">Après-midi</option>
+                                    <option value="soir">Soirée</option>
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row gx-3 mb-3">
-
+                            </div>
+                            <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" >Matière travaillée</label>
-                                
-    
-                               <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
-                                
-                                <option value="math">Mathématiques</option>
-                                <option value="chimie">Chimie</option>
-                                <option value="physique">Physique</option>
-                                <option value="francais">Français</option>
-                                <option value="anglais">Anglais</option>
+                                <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
+                                    <option value="math">Mathématiques</option>
+                                    <option value="chimie">Chimie</option>
+                                    <option value="physique">Physique</option>
+                                    <option value="francais">Français</option>
+                                    <option value="anglais">Anglais</option>
                                 </select>
                             </div>
-
                             <div class="col-md-6">
                                 <label class="small mb-1" >Programme d'étude</label>
-                                
-    
-                               <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
-                                
-                                <option value="sn">Sciences naturelles</option>
-                                <option value="sim">Sciences informatiques et mathématiques</option>
-                                <option value="sla">Sciences, lettres et arts</option>
-                                <option value="technique">Technique</option>
+                                <select id="inputGenre" class="form-select form-select-lg" aria-label=".form-select-lg example" style="height: 48px;  width: 197px;">
+                                    <option value="sn">Sciences naturelles</option>
+                                    <option value="sim">Sciences informatiques et mathématiques</option>
+                                    <option value="sla">Sciences, lettres et arts</option>
+                                    <option value="technique">Technique</option>
                                 </select>
                             </div>
-                        </div>
-    
-
-                        <!-- Save changes button-->
-                        <button class="btn btn-primary" type="button">Save changes</button>
-                    </form>
+                            </div>
+                            <!-- Save changes button-->
+                            <button class="btn btn-primary" type="button">Save changes</button>
+                        </form>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="js/fond_ecran.js"></script>
+        <script>
+            function displayImage(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    
+                    $('.img-account-profile')
+                        .attr('src', e.target.result)
+                        .css({
+                            'display': 'flex', 
+                            'align-items' : 'center',         
+                            'justify-content': 'center',       
+                                
+                        });
+                };
+                reader.readAsDataURL(file); // Convert the image to a Data URL
+            }
+            }
+        </script>
+    </body>
     </div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    function displayImage(input) {
-    var file = input.files[0];
-    if (file) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            
-            $('.img-account-profile')
-                .attr('src', e.target.result)
-                .css({
-                    'display': 'flex', 
-                    'align-items' : 'center',         
-                    'justify-content': 'center',       
-                          
-                });
-        };
-        reader.readAsDataURL(file); // Convert the image to a Data URL
-    }
-}
-    </script>
-</body>
 </html>
