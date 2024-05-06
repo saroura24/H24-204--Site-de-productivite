@@ -43,7 +43,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.form input {
+.form input, .form select{
   height: 60px;
   width: 100%;
   padding: 0 15px;
@@ -54,7 +54,7 @@ body {
   outline: none;
 }
 
-.form input:focus {
+.form input, .form select:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
