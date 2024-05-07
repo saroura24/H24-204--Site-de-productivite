@@ -43,7 +43,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.form input {
+.form input, .form select{
   height: 60px;
   width: 100%;
   padding: 0 15px;
@@ -54,13 +54,13 @@ body {
   outline: none;
 }
 
-.form input:focus {
+.form input, .form select:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .form a {
   font-size: 16px;
-  color: #009579;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -70,7 +70,7 @@ body {
 
 .form input.button {
   color: #fff;
-  background: #009579;
+  background: #000000;
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 1px;
@@ -80,7 +80,7 @@ body {
 }
 
 .form input.button:hover {
-  background: #006653;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .signup {
@@ -89,13 +89,12 @@ body {
 }
 
 .signup span a {
-  color: #009579;
+  color: #000000;
   cursor: pointer;
+  text-decoration: underline;
+  font-weight: 550;
 }
 
-.signup span a:hover {
-  text-decoration: underline;
-}
 
 .button {
   display: inline-block;
@@ -106,14 +105,14 @@ body {
   text-transform: uppercase;
   width: 100%;
   color: #fff;
-  background-color: #009688;
-  border: 2px solid #009688;
+  background-color: #000000;
+  border: 2px solid #000000;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .button:hover {
-  background-color: #00796b;
-  border-color: #00796b;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0.8);
 }

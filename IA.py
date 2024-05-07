@@ -1,5 +1,6 @@
 import pandas as pd
 import chardet as chardet
+
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
@@ -9,7 +10,6 @@ from sklearn.naive_bayes import MultinomialNB
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
-#import tensorflow as tf
 import nltk
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
@@ -24,8 +24,7 @@ data = pd.read_csv("./donnees_etudiants.csv", encoding=encoding)
 
 
 
-
-# Encoding the textual data in ‘location’ and ‘salary’ columns
+# Séparer les features (X) et la cible (Y)
 le = LabelEncoder()
 data['Genre'] = le.fit_transform(data['Genre'])
 data['Age'] = le.fit_transform(data['Age'])
@@ -34,7 +33,6 @@ data['Suggestion_tache'] = le.fit_transform(data['Suggestion_tache'])
 data['Performance'] = le.fit_transform(data['Performance'])
 data['Duree'] = le.fit_transform(data['Duree'])
 data['Matiere_etudiee'] = le.fit_transform(data['Matiere_etudiee'])
-
 
 sc = StandardScaler()
 data[['Genre', 'Age', 'Programme_detude', 'Suggestion_tache', 'Performance', 'Duree', 'Matiere_etudiee']] = sc.fit_transform(data[['Genre', 'Age', 'Programme_detude', 'Suggestion_tache', 'Performance', 'Duree', 'Matiere_etudiee']])
@@ -45,14 +43,13 @@ print(column_names)
 
 print("Les noms des colonnes dans le DataFrame sont :", data.columns)
 
-#seprarer les x et le y
+# Séparer les x et le y
 # Définir X en incluant toutes les colonnes sauf 'temps_dans_journee'
 X = data[['Genre','Age','Programme_detude','Suggestion_tache','Performance','Duree','Matiere_etudiee']]
 print()
 print(X)
 
 # Sélectionner la cible (y)
-
 print()
 Y = data['Moment_detude']
 print(Y)

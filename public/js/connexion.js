@@ -10,7 +10,7 @@ $(document).ready(function() {
   toggleBtn.click(function() {
       links.toggleClass('open');
       if (links.hasClass('open')) {
-          links.height(310); 
+          links.height(270); 
           $('.toggle_btn i').removeClass('fa-bars').addClass('fa-xmark');
       } else {
           links.height(0); 

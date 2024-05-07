@@ -46,9 +46,7 @@ app.get("/mon-compte", (req,res) => {
   res.render("myAccount2");
 });
 
-app.get("/mot-de-passe", (req,res) => {
-  res.render("password");
-});
+
 
 app.get("/inscription", (req,res) => {
 

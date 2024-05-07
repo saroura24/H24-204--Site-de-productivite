@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.bot{
+    position: absolute;
+    font-size: 3rem;
+    right: 2.8rem;
+    cursor: pointer;
+    bottom: 2rem;
+}

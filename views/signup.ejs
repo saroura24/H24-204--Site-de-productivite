@@ -4,24 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S'inscrire</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleApp.css">
 </head>
 <body>
+    <div class="hero" style="background-image: url(`images/cozy.jpg`);">
+        <div class="logo" style="position: absolute; top: 1rem; left: 1rem;"><a href="accueil">Studialy</a></div>
     <div class="container" style="height: 550px;">
         
         <form action="/inscription" method="post" class="form">
-            <header>S'inscrire</header>
+            <header style="color: black;">S'inscrire</header>
             <input type="text" id="full-name" name="name" placeholder="Nom complet" required autocomplete="off" >
             <input type="text" id="email" name="email" placeholder="E-mail" required autocomplete="off">
             <input type="password" id="password" name="password" placeholder="Mot de passe" required>
             <input type="password" id="confirm-password" placeholder="Confirmez le mot de passe" required>
+                <!--
+                    <select id="full-name" name="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="fiat">Fiat</option>
+  <option value="audi">Audi</option>
+</select> 
+pour pouvoir faire les forms de la selection des infos du user
+                -->
+
             <button type="submit" class="button">S'inscrire</button>
         </form>
         <div class="signup">
-            <span>Avez-vous un compte? <a href="/connexion">Connectez-vous!</a></span>
+            <span style="color: black;">Avez-vous un compte? <a href="/connexion">Connectez-vous!</a></span>
         </div>
     </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/fond_ecran.js"></script>
+
     <% if(existingUser===true){%>
         
         <script>
