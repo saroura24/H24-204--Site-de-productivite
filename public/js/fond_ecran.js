@@ -1,8 +1,7 @@
 
 
 $(document).ready(function() {
-   
-
+    
     function setBackground(img) {
         $(".hero").css({"background-image": "url(" + img + ")"});
        
@@ -36,4 +35,5 @@ $(document).ready(function() {
 
     
     getBackground();
+    
 });

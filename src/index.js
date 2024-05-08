@@ -5,8 +5,7 @@ const collection = require("./config");
 const app = express();
 
 //Intégrer système de session
-/*https://dev.to/m_josh/build-a-jwt-login-
-and-logout-system-using-expressjs-nodejs-hd2*/
+
 
 // Middleware
 app.use(express.json());
@@ -19,15 +18,16 @@ const session = require('express-session');
 require('dotenv').config();
 
 app.use(session({
-  secret: process.env.SESSION_SECRET, // Replace 'your_secret_key' with a real key for production
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if you're using HTTPS
+  cookie: { secure: false } 
 }));
-// Server-side routes
+
 app.get("/", (req,res) => {
   res.render("index");
 });
+
 app.get("/accueil", (req,res) => {
 if(req.session.isAuthenticated && req.session.user){
   
@@ -113,7 +113,6 @@ app.post("/connexion", async (req,res) => {
     
       } else {
         res.render('login', { isPasswordMatch: false, check: true });
-       
       }
     }
   } catch {
@@ -149,23 +148,26 @@ app.post("/inscription", async (req,res) => {
   }
 });
 
-app.post("/mot-de-passe", async (req,res)=>{
+app.post("/mon-compte", async (req,res) => {
+  const userInfo = {
+    age: req.body.age,
+    programme: req.body.prgramme,
+    momentEtude: req.body.momentEtude,
+    genre: req.body.momentEtude,
+    matiere: req.body.matiere,
+    duree: req.body.duree,
 
-const motDePasse = {
-  currentPassword : req.body.currentPassword,
-  newPassword : req.body.newPassword,
-  confirmPassword : req.body.newPassword
-}
+  }
 
-const existingPassword = await collection.findOne({password: motDePasse.currentPassword})
+  const existingUser = await collection.findOne({email: user.email})
 
-if(existingPassword===false){
-console.log("meme mdp");
-}
+  const userdata = await collection.insertMany(userInfo);
+  console.log(userdata);
 
+  
 });
 
-// Start the server
+
 const port = 5000;
 app.listen(port, () => {
   console.log(`Server running on Port: ${port}`);
