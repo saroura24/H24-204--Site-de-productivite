@@ -19,8 +19,6 @@ console.log("Database couldnt be connected");
 });
 
 
-
-
 const LoginSchema = new mongoose.Schema({
   name: {
       type: String,
@@ -33,35 +31,34 @@ const LoginSchema = new mongoose.Schema({
   email:{
     type: String,
     required: true
+  },
 
-  }
+  genre: {
+    type: String,
+},
+  momentEtude: {
+  type: String,
+ 
+},
+matiereEtudie:{
+  type: String,
+
+},
+dureeEtude:{
+  type: String,
+  
+},
+programme:{
+  type: String,
+  
+}
+
+
+
   
 });
 
 
-
-
-
-const InfoSchema = new mongoose.Schema({
-  firstName: {
-      type: String,
-      
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  gender:{
-    type: String,
-    required: true
-
-  },
-  birth:{
-    type: String,
-    required: true
-
-  }
-});
 
 const collection = new mongoose.model("users", LoginSchema);
 
