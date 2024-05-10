@@ -26,11 +26,11 @@ const LoginSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    
   },
   email:{
     type: String,
-    required: true
+    
   },
 
   genre: {
@@ -52,10 +52,6 @@ programme:{
   type: String,
   
 }
-
-
-
-  
 });
 
 
@@ -63,7 +59,6 @@ programme:{
 const collection = new mongoose.model("users", LoginSchema);
 
 module.exports = collection;
-
 
 
 
