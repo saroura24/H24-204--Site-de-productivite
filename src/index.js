@@ -3,8 +3,33 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 const app = express();
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://yannyvan2005:dervalvh3@cluster0.xfb4i2x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-//Intégrer système de session
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
 
 
 // Middleware
@@ -148,24 +173,44 @@ app.post("/inscription", async (req,res) => {
   }
 });
 
-app.post("/mon-compte", async (req,res) => {
-  const userInfo = {
-    age: req.body.age,
-    programme: req.body.prgramme,
-    momentEtude: req.body.momentEtude,
-    genre: req.body.momentEtude,
-    matiere: req.body.matiere,
-    duree: req.body.duree,
 
+app.post("/mon-compte", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      const userInfo = {
+        age: req.body.age,
+        programme: req.body.programme,
+        momentEtude: req.body.momentEtude,
+        genre: req.body.genre,
+        matiere: req.body.matiere,
+        duree: req.body.duree,
+      };
+
+      await client.connect();
+      // Get the reference to the database
+      const db = client.db("Studialy");
+
+      // Get the reference to the users collection
+      const usersCollection = db.collection("users");
+
+      // Update the user information in the users collection
+      await usersCollection.update(
+        { name: "Yann" }, 
+        {$set:{age: userInfo.age}} 
+      );
+
+      res.render("myAccount2", { successMessage: "User information updated successfully" });
+    } else {
+      res.redirect("/connexion"); // Redirect to login if user is not authenticated
+    }
+  } catch (error) {
+    console.error("Error updating user information:", error);
+    res.status(500).send("An error occurred while updating user information");
   }
-
-  const existingUser = await collection.findOne({email: user.email})
-
-  const userdata = await collection.insertMany(userInfo);
-  console.log(userdata);
-
-  
 });
+
+
+
 
 
 const port = 5000;

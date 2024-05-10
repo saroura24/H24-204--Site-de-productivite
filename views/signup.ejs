@@ -45,7 +45,9 @@ pour pouvoir faire les forms de la selection des infos du user
             $(document).ready(function() {
                 $(".container").height(590);
                $("#full-name").css("margin-top", "10px");
-               $("#full-name").before("Cet e-mail est déja utilisé.");
+               $("#full-name").before("<span style='color: black;'>Cet e-mail est déja utilisé.</span>");
+
+               
        });
               </script>
               <% console.log(existingUser)%>  
