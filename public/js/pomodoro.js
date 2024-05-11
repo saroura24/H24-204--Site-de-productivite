@@ -5,13 +5,17 @@ $(".button-28").click(function(){
     
 })
 
+const pomodoroTime = localStorage.getItem('pomodoro') || 25;
+const shortBreakTime = localStorage.getItem('shortBreak') || 5;
+const longBreakTime = localStorage.getItem('longBreak') || 15;
 
 const timer = {
-  pomodoro: 25,
-  shortBreak: 5,
-  longBreak: 15,
+  pomodoro: pomodoroTime,
+  shortBreak: shortBreakTime,
+  longBreak: longBreakTime,
   longBreakInterval: 4,
 };
+
 
 const mainButton = $('#js-btn');
 mainButton.on('click', function() {
@@ -66,7 +70,7 @@ function getRemainingTime(endTime) {
   const difference = endTime - currentTime;
 
   const total = parseInt(difference / 1000, 10);
-  const minutes = parseInt((total / 60) % 60, 10);
+  const minutes = parseInt((total / 60), 10);
   const seconds = parseInt(total % 60, 10);
 
   return {
@@ -140,4 +144,5 @@ $('.play-playlist').click(function() {
   }
 
   $('.chose-playlist').val("");
+
 });

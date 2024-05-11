@@ -47,9 +47,13 @@
                     </div>
                 </h2>
                 <h2 id="pomodoro">
-                    Pomodoro
+                    <div style="position: relative; left: 385px; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">Pomodoro</div>
                     <div class="change-timer">
+                        <textarea name="pomodoro" id="pomodoro-param">25</textarea>
+                        <textarea name="shortBreak" id="shortBreak-param">5</textarea>
+                        <textarea name="longBreak" id="longBreak-param">15</textarea>
                     </div>
+                    <button class="sauvegarder">Sauvegarder</button>
                 </h2>
                 </div>
             </div>
@@ -62,6 +66,34 @@
         <%if(isPasswordMatch) {%>
         <script src="js/connexion.js"></script>
         <%  } %>
+        <script>
+            $(".sauvegarder").click(function(){
+                $(".sauvegarder").removeClass("clicked");
+                $(this).addClass("clicked");
+                const tempPomo = document.getElementById("pomodoro-param").value;
+                const tempShort = document.getElementById("shortBreak-param").value;
+                const tempLong = document.getElementById("longBreak-param").value;
+ 
+                // Validate input (optional)
+                const regEx = /^[0-9]+$/;
+                if (regEx.test(tempPomo) && regEx.test(tempShort) && regEx.test(tempLong)) {
+                    localStorage.setItem('pomodoro', tempPomo);
+                    localStorage.setItem('shortBreak', tempShort);
+                    localStorage.setItem('longBreak', tempLong);
+      
+                    // Update timer settings displayed on the page (optional)
+                    document.getElementById("pomodoro-param").value = tempPomo;
+                    document.getElementById("shortBreak-param").value = tempShort;
+                    document.getElementById("longBreak-param").value = tempLong;
+
+                    // Reload or redirect to the pomodoro page to reflect changes
+                    window.location.href = 'pomodoro'; // Redirect to pomodoro page
+                } else {
+                    // Handle invalid input (optional)
+                    alert("Please enter valid numeric values for timer settings.");
+                }
+            })
+        </script>
     </body>
 </html>
 </html>

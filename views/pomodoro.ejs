@@ -98,7 +98,22 @@
     <script src="js/pomodoro.js"></script>
     <script src="js/fond_ecran.js"></script>
     <script src="js/main.js"></script>
-    
+    <script>
+      $(document).ready(function() {
+        // Initialize timer settings from localStorage
+        const pomodoroTime = localStorage.getItem('pomodoro') || 25;
+        const shortBreakTime = localStorage.getItem('shortBreak') || 5;
+        const longBreakTime = localStorage.getItem('longBreak') || 15;
+
+        // Set timer values in the UI
+        $('#pomodoro-param').val(pomodoroTime);
+        $('#shortBreak-param').val(shortBreakTime);
+        $('#longBreak-param').val(longBreakTime);
+
+        // Switch mode to reflect the initial timer setting (optional)
+        switchMode('pomodoro');
+      });
+    </script>
 
 
 <%if(isPasswordMatch) {%>
