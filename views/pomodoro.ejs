@@ -45,6 +45,12 @@
                     </div>
                 </div>
             </header>
+            <div class="bot">
+              <div class="bot-display"></div>
+              <div class="toggle-bot">
+                  <i class="fa-solid fa-robot"></i>
+              </div>
+          </div>
         </div>
       <div >
         <input class="chose-playlist" type="text" placeholder="  Entrez le lien Spotify de votre playlist !">
@@ -100,17 +106,14 @@
     <script src="js/main.js"></script>
     <script>
       $(document).ready(function() {
-        // Initialize timer settings from localStorage
         const pomodoroTime = localStorage.getItem('pomodoro') || 25;
         const shortBreakTime = localStorage.getItem('shortBreak') || 5;
         const longBreakTime = localStorage.getItem('longBreak') || 15;
 
-        // Set timer values in the UI
         $('#pomodoro-param').val(pomodoroTime);
         $('#shortBreak-param').val(shortBreakTime);
         $('#longBreak-param').val(longBreakTime);
 
-        // Switch mode to reflect the initial timer setting (optional)
         switchMode('pomodoro');
       });
     </script>
