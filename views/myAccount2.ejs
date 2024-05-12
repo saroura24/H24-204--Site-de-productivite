@@ -12,54 +12,77 @@
         
         <div class="logo" style="position: absolute; top: 1rem; left: 1rem;"><a href="accueil">Studialy</a></div>
     <div class="container" style="height: 550px; ">
-        
+        <header style="color: black;">Mon compte</header>
         <form action="/mon-compte" method="post" class="form">
-            <header style="color: black;">Mon compte</header>
-            <input type="text" id="age" name="age" placeholder="Âge" required>
-            <select type="text" id="programme" name="programme" required>
-                <option>--Programme--</option>           
-     <option value="sn">Sciences Naturelles</option>
-     <option value="sim">S.I.M</option>
-     <option value="sla">Sciences, Lettres et Arts</option>
-     <option value="tech">Technique</option>
-   </select> 
 
-            <select type="text" id="momentEtude" name="momentEtude" required>
-                <option>--Moment d'étude--</option>           
-     <option value="matin">Matin</option>
-     <option value="midi">Midi</option>
-     <option value="apresMidi">Après-midi</option>
-     <option value="soir">Soir</option>
-   </select> 
-
-                    <select type="text" id="genre" name="genre" required>
-             <option>--Genre--</option>           
-  <option value="masculin">Masculin</option>
-  <option value="feminin">Féminin</option>
-</select> 
-
-               
+            <div class="write">
+                <div>
+                    <input type="text" id="age" name="age" placeholder="Âge" required>
+                <select type="text" id="programme" name="programme" required>
+                    <option>--Programme--</option>           
+         <option value="Sciences Naturelles">Sciences Naturelles</option>
+         <option value="S.I.M">S.I.M</option>
+         <option value="Sciences, Lettres et Arts">Sciences, Lettres et Arts</option>
+         <option value="Technique">Technique</option>
+       </select> 
+    
+                <select type="text" id="momentEtude" name="momentEtude" required>
+                    <option>--Moment d'étude--</option>           
+         <option value="Matin">Matin</option>
+         <option value="Midi">Midi</option>
+         <option value="Après-midi">Après-midi</option>
+         <option value="Soir">Soir</option>
+       </select> 
+    
+                        <select type="text" id="genre" name="genre" required>
+                 <option>--Genre--</option>           
+      <option value="Masculin">Masculin</option>
+      <option value="Féminin">Féminin</option>
+    </select> 
+                </div>
+                
+                    <div>
+                        <input type="text" id="email" name="email" placeholder="E-mail">
+                        <input type="password" id="password" name="password" placeholder="Mot de passe">
+                        <input type="text" id="matiere" name="matiere" placeholder="Matière étudiée" required >
+            
+                        <input type="text" id="duree" name="duree" placeholder="Durée d'étude (h)"required>
+                    </div>
+            </div>    
 
             <button type="submit" class="button">Sauvegarder</button>
         </form>
 
-        <form action="/mon-compte" method="post" class="form" style="margin-top: 25px;">
-           
-            
-            <input type="text" id="email" name="email" placeholder="E-mail" required autocomplete="off">
-            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
-            <input type="text" id="matiere" name="matiere" placeholder="Matière étudiée" required >
+       
 
-            <input type="text" id="duree" name="duree" placeholder="Durée d'étude (h)"required>
 
-        </form>
-
-        
       
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/fond_ecran.js"></script>
+
+
+
+
+   
+    
+    <script>
+
+$(document).ready(function() {
+    
+        $("#age").val("<%= age %>");
+        $("#programme").val("<%= programme %>");
+        $("#momentEtude").val("<%= momentEtude %>");
+        $("#genre").val("<%= genre %>");
+        $("#matiere").val("<%= matiere %>");
+        $("#duree").val("<%= duree %>");
+ 
+});
+    </script>
+
+   
+
 
   
 </body>

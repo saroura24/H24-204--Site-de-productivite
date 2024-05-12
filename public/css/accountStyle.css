@@ -26,28 +26,32 @@ body {
   background: white;
   border-radius: 7px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  display: inline-flex;
+  
 }
 
-.container .form {
+.container .form .write{
   padding: 2rem;
   display: flex;
-  align-items: left;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  
+  
 }
 
-.form header {
+.container header {
   font-size: 2rem;
   font-weight: 500;
   text-align: left;
-  margin-bottom: 1.5rem;
-  left: -15px;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  margin-bottom: 5px;
+  
 }
 
 .form input, .form select{
   height: 60px;
-  width: 100%;
+  width: 90%;
   padding: 0 15px;
   font-size: 17px;
   margin-bottom: 1.3rem;
@@ -85,34 +89,25 @@ body {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.signup {
-  font-size: 17px;
-  text-align: center;
-}
 
-.signup span a {
-  color: #000000;
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: 550;
-}
 
 
 .button {
-    display: inline-block;
+    display: inline-flex;
     padding: 10px 20px;
     font-size: 16px;
     position: relative;
     top: 7%;
     font-weight: bold;
     text-transform: uppercase;
-    width: 100%;
+    width: 164px;
     color: #fff;
     background-color: #000000;
     border: 2px solid #000000;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin-left: 2rem;
   }
 
 .button:hover {

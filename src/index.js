@@ -3,33 +3,11 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 const app = express();
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://yannyvan2005:dervalvh3@cluster0.xfb4i2x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const UserModel = require("./config"); // Import your Mongoose User model
 
 
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-    
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
 
 
 // Middleware
@@ -39,6 +17,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 const session = require('express-session');
+const { log } = require('console');
 
 require('dotenv').config();
 
@@ -68,7 +47,7 @@ app.get("/connexion", (req,res) => {
 });
 
 app.get("/mon-compte", (req,res) => {
-  res.render("myAccount2");
+  res.render("myAccount2",{ age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
 });
 
 
@@ -173,7 +152,6 @@ app.post("/inscription", async (req,res) => {
   }
 });
 
-
 app.post("/mon-compte", async (req, res) => {
   try {
     if (req.session.isAuthenticated) {
@@ -183,31 +161,55 @@ app.post("/mon-compte", async (req, res) => {
         momentEtude: req.body.momentEtude,
         genre: req.body.genre,
         matiere: req.body.matiere,
-        duree: req.body.duree,
+        duree: req.body.duree
       };
 
-      await client.connect();
-      // Get the reference to the database
-      const db = client.db("Studialy");
+      // Find the user by name
+      const user = await UserModel.findOne({ name: req.session.user.name });
 
-      // Get the reference to the users collection
-      const usersCollection = db.collection("users");
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
 
-      // Update the user information in the users collection
-      await usersCollection.update(
-        { name: "Yann" }, 
-        {$set:{age: userInfo.age}} 
-      );
+      // Update user information
+      user.age = userInfo.age;
+      user.programme = userInfo.programme;
+      user.momentEtude = userInfo.momentEtude;
+      user.genre = userInfo.genre;
+      user.matiere = userInfo.matiere;
+      user.duree = userInfo.duree;
 
-      res.render("myAccount2", { successMessage: "User information updated successfully" });
+      req.session.user = {
+      name : req.session.user.name,
+      age : userInfo.age,
+      programme : userInfo.programme,
+      momentEtude : userInfo.momentEtude,
+      genre :userInfo.genre,
+      matiere : userInfo.matiere,
+      duree : userInfo.duree
+    };
+
+    console.log(req.session.user);
+
+    /*Il faut que je get les info du user lorsque il se connecte,
+    comme ca ils pourront directement etre affiché lorsque il accedera a son compte. Il va me falloir une variable qui detecte si on a update
+    ce qui ce passe c'est que rien n,est affiché tant qu'il n'y a pas de update. Pourtant les infos du user sont dans la database.
+    Je dois les get lors de la connexion et les afficher lorsque j'accede à mon compte. Cela est toutefois secondaire car je peux maintenant acceder aux infos du user dans la database
+*/
+      // Save the updated document
+      await user.save();
+      req.session.isAuthenticated = true;
+
+      res.render("myAccount2", { successMessage: "User information updated successfully", age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
     } else {
-      res.redirect("/connexion"); // Redirect to login if user is not authenticated
+      res.redirect("/connexion"); 
     }
   } catch (error) {
     console.error("Error updating user information:", error);
     res.status(500).send("An error occurred while updating user information");
   }
 });
+
 
 
 

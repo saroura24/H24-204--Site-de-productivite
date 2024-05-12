@@ -21,36 +21,40 @@ console.log("Database couldnt be connected");
 
 const LoginSchema = new mongoose.Schema({
   name: {
-      type: String,
+      type: String
       
   },
   password: {
-    type: String,
+    type: String
     
   },
   email:{
-    type: String,
+    type: String
     
   },
 
   genre: {
-    type: String,
+    type: String
 },
   momentEtude: {
-  type: String,
+  type: String
  
 },
-matiereEtudie:{
-  type: String,
+matiere:{
+  type: String
 
 },
-dureeEtude:{
-  type: String,
+duree:{
+  type: String
   
 },
 programme:{
-  type: String,
+  type: String
   
+},
+
+age: {
+  type: Number
 }
 });
 
