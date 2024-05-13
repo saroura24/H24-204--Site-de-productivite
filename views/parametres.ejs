@@ -74,22 +74,18 @@
                 const tempShort = document.getElementById("shortBreak-param").value;
                 const tempLong = document.getElementById("longBreak-param").value;
  
-                // Validate input (optional)
                 const regEx = /^[0-9]+$/;
                 if (regEx.test(tempPomo) && regEx.test(tempShort) && regEx.test(tempLong)) {
                     localStorage.setItem('pomodoro', tempPomo);
                     localStorage.setItem('shortBreak', tempShort);
                     localStorage.setItem('longBreak', tempLong);
       
-                    // Update timer settings displayed on the page (optional)
                     document.getElementById("pomodoro-param").value = tempPomo;
                     document.getElementById("shortBreak-param").value = tempShort;
                     document.getElementById("longBreak-param").value = tempLong;
 
-                    // Reload or redirect to the pomodoro page to reflect changes
-                    window.location.href = 'pomodoro'; // Redirect to pomodoro page
+                    window.location.href = 'pomodoro';
                 } else {
-                    // Handle invalid input (optional)
                     alert("Veuillez entrer une valeur numérique valide.");
                 }
             })
