@@ -19,54 +19,50 @@ console.log("Database couldnt be connected");
 });
 
 
-
-
 const LoginSchema = new mongoose.Schema({
   name: {
-      type: String,
+      type: String
       
   },
   password: {
-    type: String,
-    required: true
+    type: String
+    
   },
   email:{
-    type: String,
-    required: true
+    type: String
+    
+  },
 
-  }
+  genre: {
+    type: String
+},
+  momentEtude: {
+  type: String
+ 
+},
+matiere:{
+  type: String
+
+},
+duree:{
+  type: String
   
+},
+programme:{
+  type: String
+  
+},
+
+age: {
+  type: Number
+}
 });
 
 
-
-
-
-const InfoSchema = new mongoose.Schema({
-  firstName: {
-      type: String,
-      
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  gender:{
-    type: String,
-    required: true
-
-  },
-  birth:{
-    type: String,
-    required: true
-
-  }
-});
 
 const collection = new mongoose.model("users", LoginSchema);
 
 module.exports = collection;
-
 
 
 

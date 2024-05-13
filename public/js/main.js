@@ -13,5 +13,14 @@ toggleBtn.onclick = function(){
         : 'fa-solid fa-bars';
 }
 
+const toggleBtnBot = document.querySelector('.toggle-bot');
+const toggleBtnIconBot = document.querySelector('.toggle-bot i');
+const bot = document.querySelector('.bot');
+
+toggleBtnBot.onclick = function(){
+    bot.classList.toggle('openBot');
+    const isOpenBot = bot.classList.contains('openBot');
+}
+
 
 

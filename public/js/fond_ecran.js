@@ -1,5 +1,7 @@
+
+
 $(document).ready(function() {
-   
+    
     function setBackground(img) {
         $(".hero").css({"background-image": "url(" + img + ")"});
        
@@ -22,6 +24,16 @@ $(document).ready(function() {
         setBackground(imgSrc);
     });
 
+    var setBackgroundDefault = (function(){
+        setBackground(`images/cozy.jpg`);
+        localStorage.setItem('functionExecuted', 'true');
+    })
+    
+    if(!localStorage.getItem('functionExecuted')) {
+        setBackgroundDefault();
+    }
+
     
     getBackground();
+    
 });

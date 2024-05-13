@@ -12,11 +12,11 @@
 </head>
 
 <body>
-    <div class="hero" style="background-image: url(`images/cozy.jpg`);">
+    <div class="hero">
         <div class="logo" style="position: absolute; top: 1rem; left: 1rem;"><a href="accueil">Studialy</a></div>
         <div class="container">
             <form action="/connexion" method="post" class="form">
-                <header style="color: black;">Se connecter</header>
+                <header>Se connecter</header>
                 
                 <input type="text" id="email" name="email" placeholder="E-mail" required autocomplete="off">
                 <input type="password" id="password" name="password" placeholder="Mot de passe" required>
@@ -38,10 +38,12 @@
             $(document).ready(function() {
                 $(".container").height(430);
                $("#email").css("margin-top", "10px");
-               $("#email").before("Cet e-mail n'existe pas. Veuillez réessayez.");
+               $("#email").before("<span style='color: black;'>Cet e-mail n'existe pas. Veuillez réessayez.</span>");
                $("#email").css("border-color", "red");
                $("#password").css("border-color", "red");
        });
+
+       
               </script>
 
         <%  }else if(isPasswordMatch===false){%>
@@ -50,7 +52,8 @@
                 $(document).ready(function() {
                    $(".container").height(460);
                    $("#email").css("margin-top", "10px");
-                   $("#email").before("Mot de passe ou e-mail est erroné. Veuillez réessayez.");
+                   $("#email").before("<span style='color: black;'>Mot de passe ou e-mail est erroné. Veuillez réessayer.</span>");
+
                    $("#email").css("border-color", "red");
                    $("#password").css("border-color", "red");
            });

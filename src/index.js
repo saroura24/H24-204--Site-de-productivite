@@ -3,10 +3,12 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const collection = require("./config");
 const app = express();
+const UserModel = require("./config"); // Import your Mongoose User model
 
-//Intégrer système de session
-/*https://dev.to/m_josh/build-a-jwt-login-
-and-logout-system-using-expressjs-nodejs-hd2*/
+
+
+
+
 
 // Middleware
 app.use(express.json());
@@ -15,19 +17,21 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 const session = require('express-session');
+const { log } = require('console');
 
 require('dotenv').config();
 
 app.use(session({
-  secret: process.env.SESSION_SECRET, // Replace 'your_secret_key' with a real key for production
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if you're using HTTPS
+  cookie: { secure: false } 
 }));
-// Server-side routes
+
 app.get("/", (req,res) => {
   res.render("index");
 });
+
 app.get("/accueil", (req,res) => {
 if(req.session.isAuthenticated && req.session.user){
   
@@ -42,8 +46,22 @@ app.get("/connexion", (req,res) => {
   res.render("login", {isPasswordMatch : true, check: true});
 });
 
-app.get("/mon-compte", (req,res) => {
-  res.render("myAccount2");
+app.get("/mon-compte", async (req,res) => {
+
+  const user = await UserModel.findOne({ name: req.session.user.name });
+
+  req.session.user = {
+    name : req.session.user.name,
+    age : user.get("age"),
+    programme : user.get("programme"),
+    momentEtude : user.get("momentEtude"),
+    genre :user.get("genre"),
+    matiere : user.get("matiere"),
+    duree : user.get("duree")
+  };
+ 
+
+  res.render("myAccount2",{ age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
 });
 
 
@@ -113,7 +131,6 @@ app.post("/connexion", async (req,res) => {
     
       } else {
         res.render('login', { isPasswordMatch: false, check: true });
-       
       }
     }
   } catch {
@@ -138,7 +155,7 @@ app.post("/inscription", async (req,res) => {
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
     const userdata = await collection.insertMany(user);
-    console.log(userdata);
+    //console.log(userdata);
     req.session.user = {
       name: user.name,
       email: user.email
@@ -149,23 +166,69 @@ app.post("/inscription", async (req,res) => {
   }
 });
 
-app.post("/mot-de-passe", async (req,res)=>{
+app.post("/mon-compte", async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      const userInfo = {
+        age: req.body.age,
+        programme: req.body.programme,
+        momentEtude: req.body.momentEtude,
+        genre: req.body.genre,
+        matiere: req.body.matiere,
+        duree: req.body.duree
+      };
 
-const motDePasse = {
-  currentPassword : req.body.currentPassword,
-  newPassword : req.body.newPassword,
-  confirmPassword : req.body.newPassword
-}
+      // Find the user by name
+      const user = await UserModel.findOne({ name: req.session.user.name });
 
-const existingPassword = await collection.findOne({password: motDePasse.currentPassword})
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
 
-if(existingPassword===false){
-console.log("meme mdp");
-}
+      // Update user information
+      user.age = userInfo.age;
+      user.programme = userInfo.programme;
+      user.momentEtude = userInfo.momentEtude;
+      user.genre = userInfo.genre;
+      user.matiere = userInfo.matiere;
+      user.duree = userInfo.duree;
 
+      req.session.user = {
+      name : req.session.user.name,
+      age : userInfo.age,
+      programme : userInfo.programme,
+      momentEtude : userInfo.momentEtude,
+      genre :userInfo.genre,
+      matiere : userInfo.matiere,
+      duree : userInfo.duree
+    };
+
+    console.log(req.session.user);
+
+    /*Il faut que je get les info du user lorsque il se connecte,
+    comme ca ils pourront directement etre affiché lorsque il accedera a son compte. Il va me falloir une variable qui detecte si on a update
+    ce qui ce passe c'est que rien n,est affiché tant qu'il n'y a pas de update. Pourtant les infos du user sont dans la database.
+    Je dois les get lors de la connexion et les afficher lorsque j'accede à mon compte. Cela est toutefois secondaire car je peux maintenant acceder aux infos du user dans la database
+*/
+      // Save the updated document
+      await user.save();
+      req.session.isAuthenticated = true;
+
+      res.render("myAccount2", { successMessage: "User information updated successfully", age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
+    } else {
+      res.redirect("/connexion"); 
+    }
+  } catch (error) {
+    console.error("Error updating user information:", error);
+    res.status(500).send("An error occurred while updating user information");
+  }
 });
 
-// Start the server
+
+
+
+
+
 const port = 5000;
 app.listen(port, () => {
   console.log(`Server running on Port: ${port}`);
