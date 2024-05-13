@@ -1,8 +1,5 @@
 import pandas as pd
 import chardet as chardet
-import json
-from flask import request
-from flask import Flask, render_template
 
 
 from sklearn.model_selection import train_test_split
@@ -18,34 +15,12 @@ import nltk
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
 
-app = Flask(__name__)
 
-
-@app.route('/')
-def index():
-    return 'Hello'
-
-@app.route('/mon-compte', methods=['POST'])
-def compte():
-    try:
-        output = request.get_json()
-        print(output)
-        return {'message': 'Data received successfully'}, 200
-    except Exception as e:
-        return {'error': str(e)}, 400
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-'''
 
 # Code trouvé sur : https://analyticsindiamag.com/a-beginners-guide-to-scikit-learns-mlpclassifier/
 with open("./donnees_etudiants.csv", "rb") as f:
     encoding = chardet.detect(f.read())["encoding"]
-
 data = pd.read_csv("./donnees_etudiants.csv", encoding=encoding)
-
 
 
 # Séparer les features (X) et la cible (Y)
@@ -63,20 +38,15 @@ data[['Genre', 'Age', 'Programme_detude', 'Suggestion_tache', 'Performance', 'Du
 
 
 column_names = list(data.columns)
-print(column_names)
-
-print("Les noms des colonnes dans le DataFrame sont :", data.columns)
 
 # Séparer les x et le y
 # Définir X en incluant toutes les colonnes sauf 'temps_dans_journee'
 X = data[['Genre','Age','Programme_detude','Suggestion_tache','Performance','Duree','Matiere_etudiee']]
-print()
-print(X)
+
 
 # Sélectionner la cible (y)
-print()
 Y = data['Moment_detude']
-print(Y)
+
 
 data.dropna(inplace=True)
 
@@ -94,11 +64,31 @@ classifier = MLPClassifier(hidden_layer_sizes=(1500,1000), max_iter=1000,activat
 
 classifier.fit(X_train, Y_train)
 
-
-
 #Predicting y for X_val
 y_pred = classifier.predict(X_val)
 print(y_pred)
+
+with open("./testDonnees.csv", "rb") as f:
+    encoding = chardet.detect(f.read())["encoding"]
+
+datasetTest = data = pd.read_csv("./testDonnees.csv", encoding=encoding)
+
+datasetTest['Genre'] = le.fit_transform(datasetTest['Genre'])
+datasetTest['Age'] = le.fit_transform(datasetTest['Age'])
+datasetTest['Programme_detude'] = le.fit_transform(datasetTest['Programme_detude'])
+datasetTest['Suggestion_tache'] = le.fit_transform(datasetTest['Suggestion_tache'])
+datasetTest['Performance'] = le.fit_transform(datasetTest['Performance'])
+datasetTest['Duree'] = le.fit_transform(datasetTest['Duree'])
+datasetTest['Matiere_etudiee'] = le.fit_transform(datasetTest['Matiere_etudiee'])
+
+datasetTest[['Genre', 'Age', 'Programme_detude', 'Suggestion_tache', 'Performance', 'Duree', 'Matiere_etudiee']] = sc.fit_transform(datasetTest[['Genre', 'Age', 'Programme_detude', 'Suggestion_tache', 'Performance', 'Duree', 'Matiere_etudiee']])
+
+x_essai = datasetTest[['Genre', 'Age', 'Programme_detude', 'Suggestion_tache', 'Performance', 'Duree', 'Matiere_etudiee']]
+x_resultat = x_essai.iloc[:,0:-1].values
+y_testRandom = classifier.predict(x_essai)
+print()
+print()
+print(y_testRandom)
 
 cm = confusion_matrix(y_pred, y_val)
 
@@ -108,5 +98,3 @@ def accuracy(confusion_matrix):
    return diagonal_sum / sum_of_all_elements
 
 print(accuracy(cm))
-
-'''
