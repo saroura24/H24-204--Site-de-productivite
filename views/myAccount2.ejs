@@ -28,7 +28,10 @@
                             <option value="Masculin">Masculin</option>
                             <option value="Féminin">Féminin</option>
                         </select>
+                        <input type="text" id="tache" name="tache" placeholder="Tâche à faire" required>
                     </div>
+
+                    
                     <div>
                         <input type="text" id="email" name="email" placeholder="E-mail">
                         <input type="password" id="password" name="password" placeholder="Mot de passe">
@@ -47,7 +50,7 @@
                 
                     $("#age").val("<%= age %>");
                     $("#programme").val("<%= programme %>");
-                    $("#momentEtude").val("<%= momentEtude %>");
+                    $("#tache").val("<%= tache %>");
                     $("#genre").val("<%= genre %>");
                     $("#matiere").val("<%= matiere %>");
                     $("#duree").val("<%= duree %>");
@@ -56,12 +59,12 @@
             function passValues(){
                 const age = "<%= age %>";
                 const programme = "<%= programme %>";
-                const momentEtude = "<%= momentEtude %>";
+                const tache = "<%= tache %>";
                 const genre = "<%= genre %>";
                 const matiere = "<%= matiere %>";
                 const duree = "<%= duree %>";
 
-                const dict_values = {age, programme, momentEtude, genre, matiere, duree}
+                const dict_values = {age, programme, tache, genre, matiere, duree}
                 const stringify = JSON.stringify(dict_values);
                 console.log(stringify);
                 $.ajax({
