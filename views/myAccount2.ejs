@@ -78,7 +78,35 @@ $(document).ready(function() {
         $("#matiere").val("<%= matiere %>");
         $("#duree").val("<%= duree %>");
  
-});
+}); 
+
+
+function passValues(){
+
+
+    const age = "<%= age %>";
+    const programme = "<%= programme %>";
+    const momentEtude = "<%= momentEtude %>";
+    const genre = "<%= genre %>";
+    const matiere = "<%= matiere %>";
+    const duree = "<%= duree %>";
+
+    
+
+    const dict_values = {age, programme, momentEtude, genre, matiere, duree}
+    const stringify = JSON.stringify(dict_values);
+    console.log(stringify);
+    $.ajax({
+        url: "/mon-compte",
+        type: "POST",
+        contentType: "application/json",
+        data: stringify
+    });
+}
+$(document).ready(function() {
+    passValues();
+}); 
+    
     </script>
 
    

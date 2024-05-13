@@ -46,7 +46,21 @@ app.get("/connexion", (req,res) => {
   res.render("login", {isPasswordMatch : true, check: true});
 });
 
-app.get("/mon-compte", (req,res) => {
+app.get("/mon-compte", async (req,res) => {
+
+  const user = await UserModel.findOne({ name: req.session.user.name });
+
+  req.session.user = {
+    name : req.session.user.name,
+    age : user.get("age"),
+    programme : user.get("programme"),
+    momentEtude : user.get("momentEtude"),
+    genre :user.get("genre"),
+    matiere : user.get("matiere"),
+    duree : user.get("duree")
+  };
+ 
+
   res.render("myAccount2",{ age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
 });
 
@@ -141,7 +155,7 @@ app.post("/inscription", async (req,res) => {
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
     const userdata = await collection.insertMany(user);
-    console.log(userdata);
+    //console.log(userdata);
     req.session.user = {
       name: user.name,
       email: user.email

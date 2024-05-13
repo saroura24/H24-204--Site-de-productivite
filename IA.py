@@ -1,5 +1,9 @@
 import pandas as pd
 import chardet as chardet
+import json
+from flask import request
+from flask import Flask, render_template
+
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -14,9 +18,29 @@ import nltk
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
 
+app = Flask(__name__)
 
 
-# Cpde trouvé sur : https://analyticsindiamag.com/a-beginners-guide-to-scikit-learns-mlpclassifier/
+@app.route('/')
+def index():
+    return 'Hello'
+
+@app.route('/mon-compte', methods=['POST'])
+def compte():
+    try:
+        output = request.get_json()
+        print(output)
+        return {'message': 'Data received successfully'}, 200
+    except Exception as e:
+        return {'error': str(e)}, 400
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+'''
+
+# Code trouvé sur : https://analyticsindiamag.com/a-beginners-guide-to-scikit-learns-mlpclassifier/
 with open("./donnees_etudiants.csv", "rb") as f:
     encoding = chardet.detect(f.read())["encoding"]
 
@@ -84,3 +108,5 @@ def accuracy(confusion_matrix):
    return diagonal_sum / sum_of_all_elements
 
 print(accuracy(cm))
+
+'''
