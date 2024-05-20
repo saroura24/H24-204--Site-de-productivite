@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Studialy</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" href="images/cozy.jpg" as="image">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bot.css">
+
+    
+</head>
+
+<body>
+    <div class="hero" style="background-image: url(`images/cozy.jpg`);">
+        <div class="container">
+            <header>
+                <div class="navbar">
+                    <div class="logo"><a href="accueil">Studialy</a></div>
+                    <ul class="links">
+                        <li>
+                            <a href="accueil"><i class="fa-solid fa-house"></i> Accueil</a>
+                        </li>
+                        <li>
+                            <a href="pomodoro"><i class="fa-solid fa-clock"></i> Pomodoro</a>
+                        </li>
+                        <li>
+                            <a href="a-propos"><i class="fa-solid fa-circle-info"></i> À propos de nous</a>
+                        </li>
+
+                        <li>
+                          <a class="connecter"  href="connexion"><i class="fa-solid fa-user"></i> <span>Se connecter</span></a>
+                      </li>
+
+                        <li>
+                            <a href="parametres"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</a>
+                        </li>
+                    </ul>
+                    <!--<a href="#" class="action_btn"></a>-->
+                    <div class="toggle_btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </header>
+            <div class="bot">
+              <div class="bot-display"></div>
+              <div class="toggle-bot">
+                  <i class="fa-solid fa-robot"></i>
+              </div>
+          </div>
+        </div>
+      <div >
+        <input class="chose-playlist" type="text" placeholder="  Entrez le lien Spotify de votre playlist !">
+
+        <button class="play-playlist" type="submit">Jouer</button>
+
+      </div>
+        <iframe rel="preload" id="iframe"  style="border-radius:12px; box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); position: absolute; top: 80%; left:30px; width: 400px;" src="https://open.spotify.com/embed/playlist/0Iy20da7GRpAQGfVXZ5CFB?utm_source=generator"  width="60%" height="152"  frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+
+       
+        
+    </div>
+    
+      <div class="timer">
+        <div class="button-group mode-buttons" id="js-mode-buttons">
+          <button
+            data-mode="pomodoro"
+            class="button-28"
+            id="js-pomodoro"
+          >
+            Pomodoro
+          </button>
+          <button
+            data-mode="shortBreak"
+            class="button-28"
+            id="js-short-break"
+          >
+            Courte pause
+          </button>
+          <button
+            data-mode="longBreak"
+            class="button-28"
+            id="js-long-break"
+            style="width: 154px;"
+          >
+            Longue pause
+          </button>
+        </div>
+        <div class="clock" id="js-clock">
+          <span id="js-minutes">25</span>
+          <span class="separator">:</span>
+          <span id="js-seconds">00</span>
+        </div>
+        <button class="button-27" data-action="start" id="js-btn">
+          Commencer
+        </button>
+      </div>
+    </main>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/pomodoro.js"></script>
+    <script src="js/fond_ecran.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      $(document).ready(function() {
+        const pomodoroTime = localStorage.getItem('pomodoro') || 25;
+        const shortBreakTime = localStorage.getItem('shortBreak') || 5;
+        const longBreakTime = localStorage.getItem('longBreak') || 15;
+
+        $('#pomodoro-param').val(pomodoroTime);
+        $('#shortBreak-param').val(shortBreakTime);
+        $('#longBreak-param').val(longBreakTime);
+
+        switchMode('pomodoro');
+      });
+    </script>
+
+
+<%if(isPasswordMatch) {%>
+  <script src="js/connexion.js"></script>
+  
+   <%  } %>
+
+
+  </body>
+</html>

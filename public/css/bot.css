@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.bot{
+    position: absolute;
+    font-size: 3rem;
+    right: 2.8rem;
+    cursor: pointer;
+    bottom: 2rem;
+}
+
+.bot .bot-display{
+    display: block;
+    position: absolute;
+    width: 400px;
+    right: 0;
+    height: 0px;
+    background-color: rgba(87, 104, 116, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    align-items: flex-end;
+    justify-content: flex-end;
+    bottom: 4rem;
+}
+
+.bot.openBot .bot-display{
+    height: 480px;
+  }
+  

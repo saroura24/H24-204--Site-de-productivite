@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mon compte</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/accountStyle.css">
+    </head>
+    <body>
+        <div class="hero">
+            <div class="logo" style="position: absolute; top: 1rem; left: 1rem;"><a href="accueil">Studialy</a></div>
+            <div class="container" style="height: 550px; ">
+                <header style="color: black;">Mon compte</header>
+                <form action="/mon-compte" method="post" class="form">
+                <div class="write">
+                    <div>
+                        <input type="text" id="age" name="age" placeholder="Âge" required>
+                        <select type="text" id="programme" name="programme" required>
+                            <option disabled selected value="">--Programme--</option>
+                            <option value="Sciences Naturelles">Sciences Naturelles</option>
+                            <option value="S.I.M">S.I.M</option>
+                            <option value="Sciences, Lettres et Arts">Sciences, Lettres et Arts</option>
+                            <option value="Technique">Technique</option>
+                        </select>
+                        <select type="text" id="genre" name="genre" required>
+                            <option disabled selected value="">--Genre--</option>
+                            <option value="Masculin">Masculin</option>
+                            <option value="Féminin">Féminin</option>
+                        </select>
+                        <input type="text" id="tache" name="tache" placeholder="Tâche à faire" required>
+                    </div>
+
+                    
+                    <div>
+                        <input type="text" id="email" name="email" placeholder="E-mail">
+                        <input type="password" id="password" name="password" placeholder="Mot de passe">
+                        <input type="text" id="matiere" name="matiere" placeholder="Matière étudiée" required >
+                        <input type="text" id="duree" name="duree" placeholder="Durée d'étude (h)"required>
+                    </div>
+                </div>
+                <button type="submit" class="button">Sauvegarder</button>
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="js/fond_ecran.js"></script>
+        <script>
+            $(document).ready(function() {
+                
+                    $("#age").val("<%= age %>");
+                    $("#programme").val("<%= programme %>");
+                    $("#tache").val("<%= tache %>");
+                    $("#genre").val("<%= genre %>");
+                    $("#matiere").val("<%= matiere %>");
+                    $("#duree").val("<%= duree %>");
+            
+            }); 
+            function passValues(){
+                const age = "<%= age %>";
+                const programme = "<%= programme %>";
+                const tache = "<%= tache %>";
+                const genre = "<%= genre %>";
+                const matiere = "<%= matiere %>";
+                const duree = "<%= duree %>";
+
+                const dict_values = {age, programme, tache, genre, matiere, duree}
+                const stringify = JSON.stringify(dict_values);
+                console.log(stringify);
+                $.ajax({
+                    url: "/mon-compte",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: stringify
+                });
+            }
+            $(document).ready(function() {
+                passValues();
+            }); 
+        </script>
+    </body>
+</html>
