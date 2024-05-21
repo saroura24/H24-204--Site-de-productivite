@@ -57,32 +57,8 @@ app.get("/mon-compte", async (req,res) => {
     duree : user.get("duree")
   };
 
-  userData = {
-    Genre : req.session.user.genre,
-    Age : req.session.user.age,
-    Programme_detude : req.session.user.programme,
-    Suggestion_tache : req.session.user.tache,
-    Performance : "80%",
-    Duree : req.session.user.duree,
-    Matiere_etudiee : req.session.user.matiere
-  }
-
-  const dataArrays = [userData];
-
-  const { convertArrayToCSV } = require('convert-array-to-csv');
-const fs = require ('fs');
 
 
-const csvFromArrayOfArrays = convertArrayToCSV(dataArrays, {
-  separator: ','
-});
-
-fs.writeFile('donnees_utilisateur.csv', csvFromArrayOfArrays, err=>{
-if(err){
-  console.log(18,err);
-}
-
-});
   
 res.render("myAccount2",{ age: req.session.user.age, programme: req.session.user.programme, tache: req.session.user.tache, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
 
@@ -136,29 +112,27 @@ app.get("/deconnexion", (req,res) => {
 
 
 
-app.post("/connexion", async (req,res) => {
+app.post("/connexion", async (req, res) => {
   try {
-    const check = await collection.findOne({email: req.body.email});
-    if(!check){
+    const user = await collection.findOne({ email: req.body.email });
+    if (!user) {
+      console.log("User not found:", req.body.email);
       res.render('login', { check: false, isPasswordMatch: null });
-      
     } else {
-      const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-      if(isPasswordMatch){
-        
-        req.session.user = {
-          name: check.name,
-          email: check.email
-      };
-
+      console.log("User found:", user);
+      const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+      console.log("Password match:", isPasswordMatch);
+      if (isPasswordMatch) {
+        req.session.user = { name: user.name, email: user.email };
         req.session.isAuthenticated = true;
-        res.redirect('/accueil'); 
-    
+        res.redirect('/accueil');
       } else {
+        console.log("Password does not match for user:", user.email);
         res.render('login', { isPasswordMatch: false, check: true });
       }
     }
-  } catch {
+  } catch (error) {
+    console.error("Error during login:", error);
     res.send("Erreur");
   }
 });
