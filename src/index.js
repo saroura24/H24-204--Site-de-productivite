@@ -5,11 +5,6 @@ const collection = require("./config");
 const app = express();
 const UserModel = require("./config"); // Import your Mongoose User model
 
-
-
-
-
-
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -20,6 +15,8 @@ const session = require('express-session');
 const { log } = require('console');
 
 require('dotenv').config();
+
+
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -54,14 +51,18 @@ app.get("/mon-compte", async (req,res) => {
     name : req.session.user.name,
     age : user.get("age"),
     programme : user.get("programme"),
-    momentEtude : user.get("momentEtude"),
+    tache : user.get("tache"),
     genre :user.get("genre"),
     matiere : user.get("matiere"),
     duree : user.get("duree")
   };
- 
 
-  res.render("myAccount2",{ age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
+
+
+  
+res.render("myAccount2",{ age: req.session.user.age, programme: req.session.user.programme, tache: req.session.user.tache, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
+
+
 });
 
 
@@ -111,29 +112,27 @@ app.get("/deconnexion", (req,res) => {
 
 
 
-app.post("/connexion", async (req,res) => {
+app.post("/connexion", async (req, res) => {
   try {
-    const check = await collection.findOne({email: req.body.email});
-    if(!check){
+    const user = await collection.findOne({ email: req.body.email });
+    if (!user) {
+      console.log("User not found:", req.body.email);
       res.render('login', { check: false, isPasswordMatch: null });
-      
     } else {
-      const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-      if(isPasswordMatch){
-        
-        req.session.user = {
-          name: check.name,
-          email: check.email
-      };
-
+      console.log("User found:", user);
+      const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+      console.log("Password match:", isPasswordMatch);
+      if (isPasswordMatch) {
+        req.session.user = { name: user.name, email: user.email };
         req.session.isAuthenticated = true;
-        res.redirect('/accueil'); 
-    
+        res.redirect('/accueil');
       } else {
+        console.log("Password does not match for user:", user.email);
         res.render('login', { isPasswordMatch: false, check: true });
       }
     }
-  } catch {
+  } catch (error) {
+    console.error("Error during login:", error);
     res.send("Erreur");
   }
 });
@@ -155,7 +154,7 @@ app.post("/inscription", async (req,res) => {
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
     const userdata = await collection.insertMany(user);
-    //console.log(userdata);
+  
     req.session.user = {
       name: user.name,
       email: user.email
@@ -172,7 +171,7 @@ app.post("/mon-compte", async (req, res) => {
       const userInfo = {
         age: req.body.age,
         programme: req.body.programme,
-        momentEtude: req.body.momentEtude,
+        tache: req.body.tache,
         genre: req.body.genre,
         matiere: req.body.matiere,
         duree: req.body.duree
@@ -188,7 +187,7 @@ app.post("/mon-compte", async (req, res) => {
       // Update user information
       user.age = userInfo.age;
       user.programme = userInfo.programme;
-      user.momentEtude = userInfo.momentEtude;
+      user.tache = userInfo.tache;
       user.genre = userInfo.genre;
       user.matiere = userInfo.matiere;
       user.duree = userInfo.duree;
@@ -197,7 +196,7 @@ app.post("/mon-compte", async (req, res) => {
       name : req.session.user.name,
       age : userInfo.age,
       programme : userInfo.programme,
-      momentEtude : userInfo.momentEtude,
+      tache : userInfo.tache,
       genre :userInfo.genre,
       matiere : userInfo.matiere,
       duree : userInfo.duree
@@ -205,16 +204,11 @@ app.post("/mon-compte", async (req, res) => {
 
     console.log(req.session.user);
 
-    /*Il faut que je get les info du user lorsque il se connecte,
-    comme ca ils pourront directement etre affiché lorsque il accedera a son compte. Il va me falloir une variable qui detecte si on a update
-    ce qui ce passe c'est que rien n,est affiché tant qu'il n'y a pas de update. Pourtant les infos du user sont dans la database.
-    Je dois les get lors de la connexion et les afficher lorsque j'accede à mon compte. Cela est toutefois secondaire car je peux maintenant acceder aux infos du user dans la database
-*/
-      // Save the updated document
+    
       await user.save();
       req.session.isAuthenticated = true;
 
-      res.render("myAccount2", { successMessage: "User information updated successfully", age: req.session.user.age, programme: req.session.user.programme, momentEtude: req.session.user.momentEtude, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
+      res.render("myAccount2", { successMessage: "User information updated successfully", age: req.session.user.age, programme: req.session.user.programme, tache: req.session.user.tache, genre: req.session.user.genre, matiere: req.session.user.matiere, duree: req.session.user.duree});
     } else {
       res.redirect("/connexion"); 
     }
@@ -223,10 +217,6 @@ app.post("/mon-compte", async (req, res) => {
     res.status(500).send("An error occurred while updating user information");
   }
 });
-
-
-
-
 
 
 const port = 5000;
